@@ -11,7 +11,7 @@ const Spiral: React.FC = () => {
     numberList[i - 1] = i;
   }
 
-  return <div>{numberList && numberList.map((n, index) => <SpiralDot number={numberList[index]} />)}</div>;
+  return <div>{numberList && numberList.map((n, index) => <SpiralDot number={numberList[index]} topX={0} rightX={0} />)}</div>;
 };
 
 export default Spiral;
