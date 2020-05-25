@@ -1,1 +1,1 @@
-React boilerplate with Typescript, Tailwind, SASS, ESLint and Prettier.
+Prime number visualizations
