@@ -18,13 +18,13 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
 
   return (
     <div
-      className="SpiralDot absolute flex justify-center items-center font-semibold"
+      className="SpiralDot absolute flex justify-center items-center font-semibold text-gray-300"
       style={{
         height: boxSize,
         width: boxSize,
         top: window.screen.availHeight / 2 - boxSize / 2 - boxSize * yPos,
         left: window.screen.availWidth / 2 - boxSize / 2 + boxSize * xPos,
-        backgroundColor: isPrime ? '#C70039' : '#FFFFFF'
+        backgroundColor: isPrime ? '#C53030' : ''
       }}
     >
       <div>{number}</div>

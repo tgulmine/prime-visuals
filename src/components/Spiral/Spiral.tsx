@@ -72,7 +72,7 @@ const Spiral: React.FC<SpiralProps> = props => {
   }
 
   return (
-    <div>
+    <div className="bg-black">
       {numberList &&
         numberList.map((n, index) => (
           <SpiralDot number={numberList[index]} xPos={posXList[index]} yPos={posYList[index]} isPrime={isPrimeList[index]} />
