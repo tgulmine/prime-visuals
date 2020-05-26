@@ -1,5 +1,6 @@
 import * as React from 'react';
 import SpiralDot from '../SpiralDot/SpiralDot';
+import primeList from '../../prime-list.json';
 
 const Spiral: React.FC = () => {
   const min = 1;
@@ -7,19 +8,24 @@ const Spiral: React.FC = () => {
 
   //dir cima 1 esq baixo -2 dir cima 3 esq baixo -4
 
-  var posX = 0;
-  var posY = 0;
-  var isGoingX = true;
-  var isPositive = true;
-  var countIncrement = 1; //dir cima 1 esq baixo -2 dir cima 3 esq baixo -4 mas so positivo
-  var countToCounter = 0; //conta até o counter ai muda direção e reseta
-  var countPosNeg = 0; //conta até direção mudar 2x ai muda pos/neg
+  console.log(primeList);
 
-  let numberList: any[] = [];
-  let posXList: any[] = [];
-  let posYList: any[] = [];
+  let posX = 0,
+    posY = 0,
+    countIncrement = 1, //dir cima 1 esq baixo -2 dir cima 3 esq baixo -4 mas so positivo
+    countToCounter = 0, //conta até o counter ai muda direção e reseta
+    countPosNeg = 0, //conta até direção mudar 2x ai muda pos/neg
+    currentPrimeCheck = 0;
 
-  for (var i = min; i <= max; i++) {
+  let isGoingX = true,
+    isPositive = true;
+
+  let numberList: any[] = [],
+    isPrimeList: any[] = [],
+    posXList: any[] = [],
+    posYList: any[] = [];
+
+  for (let i = min; i <= max; i++) {
     if (i !== min) {
       if (isGoingX) {
         countToCounter++;
@@ -51,32 +57,25 @@ const Spiral: React.FC = () => {
         }
       }
     }
-    console.log(
-      i +
-        ' goingX ' +
-        isGoingX +
-        ' countIncrement ' +
-        countIncrement +
-        ' countToCounter ' +
-        countToCounter +
-        ' countPosNeg ' +
-        countPosNeg +
-        ' isPositive ' +
-        isPositive +
-        ' posX ' +
-        posX +
-        ' posY ' +
-        posY
-    );
 
     numberList[i - 1] = i;
     posXList[i - 1] = posX;
     posYList[i - 1] = posY;
+
+    if (primeList[currentPrimeCheck] === i) {
+      isPrimeList[i - 1] = true;
+      currentPrimeCheck++;
+    } else {
+      isPrimeList[i - 1] = false;
+    }
   }
 
   return (
     <div>
-      {numberList && numberList.map((n, index) => <SpiralDot number={numberList[index]} topX={posYList[index]} rightX={posXList[index]} />)}
+      {numberList &&
+        numberList.map((n, index) => (
+          <SpiralDot number={numberList[index]} xPos={posXList[index]} yPos={posYList[index]} isPrime={isPrimeList[index]} />
+        ))}
     </div>
   );
 };

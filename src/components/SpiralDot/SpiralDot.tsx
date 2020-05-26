@@ -3,24 +3,28 @@ import './SpiralDot.scss';
 
 interface SpiralDotProps {
   number: number;
-  topX: number;
-  rightX: number;
+  xPos: number;
+  yPos: number;
+  isPrime: Boolean;
 }
 
 const SpiralDot: React.FC<SpiralDotProps> = props => {
-  var number = props.number;
-  var topX = props.topX;
-  var rightX = props.rightX;
-  var boxSize = 20;
+  const { number } = props;
+  const { xPos } = props;
+  const { yPos } = props;
+  const { isPrime } = props;
+
+  let boxSize = 20;
 
   return (
     <div
-      className="SpiralDot bg-red-500 absolute flex justify-center items-center font-semibold"
+      className="SpiralDot absolute flex justify-center items-center font-semibold"
       style={{
         height: boxSize,
         width: boxSize,
-        top: window.screen.availHeight / 2 - boxSize / 2 - boxSize * topX,
-        left: window.screen.availWidth / 2 - boxSize / 2 + boxSize * rightX
+        top: window.screen.availHeight / 2 - boxSize / 2 - boxSize * yPos,
+        left: window.screen.availWidth / 2 - boxSize / 2 + boxSize * xPos,
+        backgroundColor: isPrime ? '#C70039' : '#FFFFFF'
       }}
     >
       <div>{number}</div>
