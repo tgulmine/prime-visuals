@@ -5,7 +5,7 @@ import Spiral from './components/Spiral/Spiral';
 const App: React.FC = () => {
   return (
     <div>
-      <Spiral />
+      <Spiral min={1} max={1000} />
     </div>
   );
 };

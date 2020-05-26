@@ -2,13 +2,14 @@ import * as React from 'react';
 import SpiralDot from '../SpiralDot/SpiralDot';
 import primeList from '../../prime-list.json';
 
-const Spiral: React.FC = () => {
-  const min = 1;
-  const max = 1000;
+interface SpiralProps {
+  min: number;
+  max: number;
+}
 
-  //dir cima 1 esq baixo -2 dir cima 3 esq baixo -4
-
-  console.log(primeList);
+const Spiral: React.FC<SpiralProps> = props => {
+  const { min } = props;
+  const { max } = props;
 
   let posX = 0,
     posY = 0,
