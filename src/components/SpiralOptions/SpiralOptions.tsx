@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import './SpiralOptions.scss';
 
 interface SpiralOptionsProps {
   /* min: number;
@@ -8,6 +9,8 @@ interface SpiralOptionsProps {
 const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   /* const { min } = props;
   const { max } = props; */
+
+  const [showNumbers, setShowNumbers] = useState(true);
 
   const colorList = [
     '#FBBF54',
@@ -25,11 +28,21 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   ];
 
   return (
-    <div className="bg-blue w-full flex justify-center items-center text-white">
-      <div className="bg-black flex flex-row justify-center">
+    <div className="w-full flex justify-center items-center text-white">
+      <div className="bg-black flex flex-row justify-center mt-32">
         <div className="flex">
-          <div className="">Show numbers</div>
-          <div className="">tog</div>
+          <div className="mr-4">Show numbers</div>
+
+          <button className="flex items-center focus:outline-none" type="button" onClick={() => setShowNumbers(!showNumbers)}>
+            <div className="border-blue-300 border-2 w-12 h-4 rounded-full" />
+            <div
+              className={
+                showNumbers
+                  ? 'SpiralOptions-toggleDotOn bg-blue-300 w-6 h-6 rounded-full absolute'
+                  : 'SpiralOptions-toggleDotOff bg-blue-300 w-6 h-6 rounded-full absolute'
+              }
+            />
+          </button>
         </div>
       </div>
     </div>

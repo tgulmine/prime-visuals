@@ -1,12 +1,11 @@
 .SpiralOptions {
-  &-toggle__dot {
-    top: -.25rem;
-    left: -.25rem;
+  &-toggleDotOff {
+    transform: translateX(0%);
     transition: all 0.3s ease-in-out;
   }
-  
-  &input:checked ~ -toggle__dot {
+  &-toggleDotOn {
     transform: translateX(100%);
-    background-color: #48bb78;
+    transition: all 0.3s ease-in-out;
+
   }
 }
