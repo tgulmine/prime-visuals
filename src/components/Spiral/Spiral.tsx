@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import SpiralDot from '../SpiralDot/SpiralDot';
 import SpiralOptions from '../SpiralOptions/SpiralOptions';
 import primeList from '../../prime-list.json';
@@ -11,6 +11,8 @@ interface SpiralProps {
 const Spiral: React.FC<SpiralProps> = props => {
   const { min } = props;
   const { max } = props;
+
+  const [showNumbers, setShowNumbers] = useState(true);
 
   let posX = 0,
     posY = 0,
@@ -76,10 +78,16 @@ const Spiral: React.FC<SpiralProps> = props => {
     <div className="w-1/4">
       {numberList &&
         numberList.map((n, index) => (
-          <SpiralDot number={numberList[index]} xPos={posXList[index]} yPos={posYList[index]} isPrime={isPrimeList[index]} />
+          <SpiralDot
+            number={numberList[index]}
+            xPos={posXList[index]}
+            yPos={posYList[index]}
+            isPrime={isPrimeList[index]}
+            showNumbers={showNumbers}
+          />
         ))}
       <div className="">
-        <SpiralOptions />
+        <SpiralOptions setShowNumbers={setShowNumbers} />
       </div>
     </div>
   );
