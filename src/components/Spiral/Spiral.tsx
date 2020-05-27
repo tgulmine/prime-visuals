@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SpiralDot from '../SpiralDot/SpiralDot';
 import SpiralOptions from '../SpiralOptions/SpiralOptions';
-import primeList from '../../prime-list.json';
+import primeList from '../../prime-list-big.json';
 
 interface SpiralProps {
   min: number;
