@@ -4,8 +4,12 @@ import Spiral from './components/Spiral/Spiral';
 import Header from './components/Header/Header';
 
 const App: React.FC = () => {
+  //fazer desenho das bordas da espiral
+  //criar vetor com os estados, borda cima, baixo, esquerda, direita e combinações
+  //na função da spiral setar o estado, criar prop no dot e mudar a border
+
   return (
-    <div className="flex flex-row bg-black h-screen">
+    <div className="flex bg-black h-screen justify-between">
       <Header />
       <Spiral min={1} max={1000} />
     </div>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import SpiralDot from '../SpiralDot/SpiralDot';
+import SpiralOptions from '../SpiralOptions/SpiralOptions';
 import primeList from '../../prime-list.json';
 
 interface SpiralProps {
@@ -72,11 +73,14 @@ const Spiral: React.FC<SpiralProps> = props => {
   }
 
   return (
-    <div className="bg-black">
+    <div className="bg-blue-900 w-1/4">
       {numberList &&
         numberList.map((n, index) => (
           <SpiralDot number={numberList[index]} xPos={posXList[index]} yPos={posYList[index]} isPrime={isPrimeList[index]} />
         ))}
+      <div className="">
+        <SpiralOptions />
+      </div>
     </div>
   );
 };
