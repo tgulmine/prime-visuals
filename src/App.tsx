@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import './styles/main.scss';
 import Spiral from './components/Spiral/Spiral';
 import Header from './components/Header/Header';
@@ -9,10 +9,31 @@ const App: React.FC = () => {
   //criar vetor com os estados, borda cima, baixo, esquerda, direita e combinações
   //na função da spiral setar o estado, criar prop no dot e mudar a border
 
+  const colorList = [
+    '#FBBF54',
+    '#EE6B3B',
+    '#EC0F47',
+    '#A02C5D',
+    '#700460',
+    '#022C7A',
+    '#ABD96D',
+    '#15C286',
+    '#087353',
+    '#045459',
+    '#262949',
+    '#1A1333'
+  ];
+  const [activeColor, setActiveColor] = useState(colorList[2]);
+
+  function changeActiveColor(color: any) {
+    setActiveColor(color);
+    console.log(color);
+  }
+
   return (
     <div className="flex bg-black h-screen justify-between">
-      <Header />
-      <Spiral min={1} max={1000} />
+      <Header activeColor={activeColor} />
+      <Spiral min={1} max={1000} activeColor={activeColor} />
     </div>
   );
 };

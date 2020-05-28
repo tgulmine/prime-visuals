@@ -6,11 +6,13 @@ import primeList from '../../prime-list-big.json';
 interface SpiralProps {
   min: number;
   max: number;
+  activeColor: string;
 }
 
 const Spiral: React.FC<SpiralProps> = props => {
   const { min } = props;
   const { max } = props;
+  const { activeColor } = props;
 
   const [showNumbers, setShowNumbers] = useState(true);
 
@@ -84,10 +86,11 @@ const Spiral: React.FC<SpiralProps> = props => {
             yPos={posYList[index]}
             isPrime={isPrimeList[index]}
             showNumbers={showNumbers}
+            activeColor={activeColor}
           />
         ))}
       <div className="">
-        <SpiralOptions setShowNumbers={setShowNumbers} />
+        <SpiralOptions setShowNumbers={setShowNumbers} activeColor={activeColor} />
       </div>
     </div>
   );

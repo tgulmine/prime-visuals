@@ -7,6 +7,7 @@ interface SpiralDotProps {
   yPos: number;
   isPrime: Boolean;
   showNumbers: Boolean;
+  activeColor: string;
 }
 
 const SpiralDot: React.FC<SpiralDotProps> = props => {
@@ -15,6 +16,7 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
   const { yPos } = props;
   const { isPrime } = props;
   const { showNumbers } = props;
+  const { activeColor } = props;
 
   let boxSize = 20;
 
@@ -26,7 +28,7 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
         width: boxSize,
         top: window.screen.availHeight / 2 - boxSize / 2 - boxSize * yPos,
         left: window.screen.availWidth / 2 - boxSize / 2 + boxSize * xPos,
-        backgroundColor: isPrime ? '#EC0F47' : ''
+        backgroundColor: isPrime ? activeColor : ''
       }}
     >
       <div>{showNumbers ? number : null}</div>

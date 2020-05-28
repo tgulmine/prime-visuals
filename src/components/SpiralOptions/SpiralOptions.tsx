@@ -3,10 +3,12 @@ import './SpiralOptions.scss';
 
 interface SpiralOptionsProps {
   setShowNumbers: Dispatch<SetStateAction<boolean>>;
+  activeColor: string;
 }
 
 const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   const { setShowNumbers } = props;
+  const { activeColor } = props;
 
   const [toggleShowNumbers, setToggleShowNumbers] = useState(true);
 
@@ -40,7 +42,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
             <div
               className="border-blue-300 border-2 w-12 h-4 rounded-full"
               style={{
-                borderColor: '#EC0F47'
+                borderColor: activeColor
               }}
             />
             <div
@@ -50,7 +52,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
                   : 'SpiralOptions-toggleDotOff bg-blue-300 w-6 h-6 rounded-full absolute'
               }
               style={{
-                backgroundColor: '#EC0F47'
+                backgroundColor: activeColor
               }}
             />
           </button>
