@@ -33,7 +33,7 @@ const App: React.FC = () => {
   return (
     <div className="flex bg-black h-screen justify-between">
       <Header activeColor={activeColor} />
-      <Spiral min={1} max={1000} activeColor={activeColor} />
+      <Spiral min={1} max={1000} activeColor={activeColor} changeActiveColor={changeActiveColor} />
     </div>
   );
 };

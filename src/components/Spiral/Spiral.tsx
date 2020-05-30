@@ -7,6 +7,7 @@ interface SpiralProps {
   min: number;
   max: number;
   activeColor: string;
+  changeActiveColor: (colorVar: any) => void;
 }
 
 const Spiral: React.FC<SpiralProps> = props => {
@@ -90,7 +91,7 @@ const Spiral: React.FC<SpiralProps> = props => {
           />
         ))}
       <div className="">
-        <SpiralOptions setShowNumbers={setShowNumbers} activeColor={activeColor} />
+        <SpiralOptions setShowNumbers={setShowNumbers} activeColor={activeColor} changeActiveColor={props.changeActiveColor} />
       </div>
     </div>
   );

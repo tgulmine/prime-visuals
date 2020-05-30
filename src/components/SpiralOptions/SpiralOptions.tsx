@@ -5,6 +5,7 @@ import ColorBox from '../ColorBox/ColorBox';
 interface SpiralOptionsProps {
   setShowNumbers: Dispatch<SetStateAction<boolean>>;
   activeColor: string;
+  changeActiveColor: (colorVar: any) => void;
 }
 
 const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
@@ -61,7 +62,9 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
         </div>
         <div className="flex-row w-1/2">
           <div className="mt-4 mb-2 ml-auto mr-auto font-semibold">Change color</div>
-          <div className="flex flex-wrap">{colorList && colorList.map((color, index) => <ColorBox color={color} />)}</div>
+          <div className="flex flex-wrap">
+            {colorList && colorList.map((color, index) => <ColorBox color={color} changeActiveColor={props.changeActiveColor} />)}
+          </div>
         </div>
       </div>
     </div>

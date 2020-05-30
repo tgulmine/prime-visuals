@@ -2,7 +2,7 @@ import * as React from 'react';
 
 interface ColorBoxProps {
   color: string;
-  /* changeActiveColor: (colorVar: any) => void; */
+  changeActiveColor: (colorVar: any) => void;
 }
 
 const ColorBox: React.FC<ColorBoxProps> = props => {
@@ -14,7 +14,7 @@ const ColorBox: React.FC<ColorBoxProps> = props => {
       style={{
         borderColor: color
       }}
-      /* onClick={() => props.changeActiveColor(color)} */
+      onClick={() => props.changeActiveColor(color)}
     />
   );
 };
