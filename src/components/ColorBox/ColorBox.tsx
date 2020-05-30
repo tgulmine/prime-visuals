@@ -2,7 +2,7 @@ import * as React from 'react';
 
 interface ColorBoxProps {
   color: string;
-  changeActiveColor: (colorVar: any) => void;
+  /* changeActiveColor: (colorVar: any) => void; */
 }
 
 const ColorBox: React.FC<ColorBoxProps> = props => {
@@ -10,11 +10,11 @@ const ColorBox: React.FC<ColorBoxProps> = props => {
 
   return (
     <button
-      className="rounded p-3 bg-gray-800 mr-2 mb-2 border-white border-1 focus:outline-none focus:shadow-blackOutline"
+      className="rounded p-2 mr-2 mb-2 border-2 focus:outline-none focus:shadow-blackOutline"
       style={{
-        backgroundColor: color
+        borderColor: color
       }}
-      onClick={() => props.changeActiveColor(color)}
+      /* onClick={() => props.changeActiveColor(color)} */
     />
   );
 };

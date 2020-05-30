@@ -1,5 +1,6 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
 import './SpiralOptions.scss';
+import ColorBox from '../ColorBox/ColorBox';
 
 interface SpiralOptionsProps {
   setShowNumbers: Dispatch<SetStateAction<boolean>>;
@@ -11,6 +12,8 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   const { activeColor } = props;
 
   const [toggleShowNumbers, setToggleShowNumbers] = useState(true);
+
+  let newColor = '';
 
   function updateShowNumbers() {
     setShowNumbers(!toggleShowNumbers);
@@ -33,11 +36,10 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   ];
 
   return (
-    <div className="w-full flex justify-center items-center text-white">
-      <div className="bg-black flex flex-row justify-center mt-32">
+    <div className="w-full flex justify-center items-center text-gray-200">
+      <div className="bg-black flex-row justify-center mt-32">
         <div className="flex">
-          <div className="mr-4">Show numbers</div>
-
+          <div className="mr-4 font-semibold">Show numbers</div>
           <button className="flex items-center focus:outline-none" type="button" onClick={() => updateShowNumbers()}>
             <div
               className="border-blue-300 border-2 w-12 h-4 rounded-full"
@@ -56,6 +58,10 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
               }}
             />
           </button>
+        </div>
+        <div className="flex-row w-1/2">
+          <div className="mt-4 mb-2 ml-auto mr-auto font-semibold">Change color</div>
+          <div className="flex flex-wrap">{colorList && colorList.map((color, index) => <ColorBox color={color} />)}</div>
         </div>
       </div>
     </div>
