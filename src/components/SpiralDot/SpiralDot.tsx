@@ -20,6 +20,10 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
 
   let boxSize = 20;
 
+  function isSquare(n: number) {
+    return n > 0 && Math.sqrt(n) % 1 === 0;
+  }
+
   return (
     <div
       className="SpiralDot absolute flex justify-center items-center font-semibold text-gray-300"
@@ -28,7 +32,7 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
         width: boxSize,
         top: window.screen.availHeight / 2 - boxSize / 2 - boxSize * yPos,
         left: window.screen.availWidth / 2 - boxSize / 2 + boxSize * xPos,
-        backgroundColor: isPrime ? activeColor : ''
+        backgroundColor: isPrime ? activeColor : isSquare(number) ? '#000222' : ''
       }}
     >
       <div>{showNumbers ? number : null}</div>
