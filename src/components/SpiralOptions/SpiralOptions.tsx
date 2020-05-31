@@ -40,7 +40,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
     <div className="w-full flex justify-center items-center text-gray-200">
       <div className="bg-black flex-row justify-center mt-32">
         <div className="flex">
-          <div className="mr-4 font-semibold">Show numbers</div>
+          <div className="mr-4 font-medium">Show numbers</div>
           <button className="flex items-center focus:outline-none" type="button" onClick={() => updateShowNumbers()}>
             <div
               className="border-blue-300 border-2 w-12 h-4 rounded-full"
@@ -61,9 +61,12 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
           </button>
         </div>
         <div className="flex-row w-1/2">
-          <div className="mt-4 mb-2 ml-auto mr-auto font-semibold">Change color</div>
+          <div className="mt-4 mb-2 ml-auto mr-auto font-medium">Change color</div>
           <div className="flex flex-wrap">
-            {colorList && colorList.map((color, index) => <ColorBox color={color} changeActiveColor={props.changeActiveColor} />)}
+            {colorList &&
+              colorList.map((color, index) => (
+                <ColorBox color={color} activeColor={activeColor} changeActiveColor={props.changeActiveColor} />
+              ))}
           </div>
         </div>
       </div>
