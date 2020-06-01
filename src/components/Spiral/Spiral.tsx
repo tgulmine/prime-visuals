@@ -16,6 +16,7 @@ const Spiral: React.FC<SpiralProps> = props => {
   const { activeColor } = props;
 
   const [showNumbers, setShowNumbers] = useState(true);
+  const [showSquares, setShowSquares] = useState(false);
 
   let posX = 0,
     posY = 0,
@@ -87,11 +88,17 @@ const Spiral: React.FC<SpiralProps> = props => {
             yPos={posYList[index]}
             isPrime={isPrimeList[index]}
             showNumbers={showNumbers}
+            showSquares={showSquares}
             activeColor={activeColor}
           />
         ))}
       <div className="">
-        <SpiralOptions setShowNumbers={setShowNumbers} activeColor={activeColor} changeActiveColor={props.changeActiveColor} />
+        <SpiralOptions
+          setShowNumbers={setShowNumbers}
+          setShowSquares={setShowSquares}
+          activeColor={activeColor}
+          changeActiveColor={props.changeActiveColor}
+        />
       </div>
     </div>
   );

@@ -4,21 +4,27 @@ import ColorBox from '../ColorBox/ColorBox';
 
 interface SpiralOptionsProps {
   setShowNumbers: Dispatch<SetStateAction<boolean>>;
+  setShowSquares: Dispatch<SetStateAction<boolean>>;
   activeColor: string;
   changeActiveColor: (colorVar: any) => void;
 }
 
 const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   const { setShowNumbers } = props;
+  const { setShowSquares } = props;
   const { activeColor } = props;
 
   const [toggleShowNumbers, setToggleShowNumbers] = useState(true);
-
-  let newColor = '';
+  const [toggleShowSquares, setToggleShowSquares] = useState(false);
 
   function updateShowNumbers() {
     setShowNumbers(!toggleShowNumbers);
     setToggleShowNumbers(!toggleShowNumbers);
+  }
+
+  function updateShowSquares() {
+    setShowSquares(!toggleShowSquares);
+    setToggleShowSquares(!toggleShowSquares);
   }
 
   const colorList = [
@@ -60,8 +66,29 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
             />
           </button>
         </div>
+        <div className="flex mt-2">
+          <div className="mr-4 font-medium">Highlight squares</div>
+          <button className="flex items-center focus:outline-none" type="button" onClick={() => updateShowSquares()}>
+            <div
+              className="border-blue-300 border-2 w-12 h-4 rounded-full"
+              style={{
+                borderColor: activeColor
+              }}
+            />
+            <div
+              className={
+                toggleShowSquares
+                  ? 'SpiralOptions-toggleDotOn bg-blue-300 w-6 h-6 rounded-full absolute'
+                  : 'SpiralOptions-toggleDotOff bg-blue-300 w-6 h-6 rounded-full absolute'
+              }
+              style={{
+                backgroundColor: activeColor
+              }}
+            />
+          </button>
+        </div>
         <div className="flex-row w-1/2">
-          <div className="mt-4 mb-2 ml-auto mr-auto font-medium">Change color</div>
+          <div className="mt-2 mb-2 ml-auto mr-auto font-medium">Change color</div>
           <div className="flex flex-wrap">
             {colorList &&
               colorList.map((color, index) => (
