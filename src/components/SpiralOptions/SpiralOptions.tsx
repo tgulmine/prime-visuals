@@ -1,6 +1,7 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
 import './SpiralOptions.scss';
 import ColorBox from '../ColorBox/ColorBox';
+import ToggleDot from '../ToggleDot/ToggleDot';
 
 interface SpiralOptionsProps {
   setShowNumbers: Dispatch<SetStateAction<boolean>>;
@@ -47,45 +48,11 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
       <div className="bg-black flex-row justify-center mt-32">
         <div className="flex">
           <div className="mr-4 font-medium">Show numbers</div>
-          <button className="flex items-center focus:outline-none" type="button" onClick={() => updateShowNumbers()}>
-            <div
-              className="border-blue-300 border-2 w-12 h-4 rounded-full"
-              style={{
-                borderColor: activeColor
-              }}
-            />
-            <div
-              className={
-                toggleShowNumbers
-                  ? 'SpiralOptions-toggleDotOn bg-blue-300 w-6 h-6 rounded-full absolute'
-                  : 'SpiralOptions-toggleDotOff bg-blue-300 w-6 h-6 rounded-full absolute'
-              }
-              style={{
-                backgroundColor: activeColor
-              }}
-            />
-          </button>
+          <ToggleDot toggleShowNumbers={toggleShowNumbers} activeColor={activeColor} onClickFunction={updateShowNumbers} />
         </div>
         <div className="flex mt-2">
           <div className="mr-4 font-medium">Highlight squares</div>
-          <button className="flex items-center focus:outline-none" type="button" onClick={() => updateShowSquares()}>
-            <div
-              className="border-blue-300 border-2 w-12 h-4 rounded-full"
-              style={{
-                borderColor: activeColor
-              }}
-            />
-            <div
-              className={
-                toggleShowSquares
-                  ? 'SpiralOptions-toggleDotOn bg-blue-300 w-6 h-6 rounded-full absolute'
-                  : 'SpiralOptions-toggleDotOff bg-blue-300 w-6 h-6 rounded-full absolute'
-              }
-              style={{
-                backgroundColor: activeColor
-              }}
-            />
-          </button>
+          <ToggleDot toggleShowNumbers={toggleShowNumbers} activeColor={activeColor} onClickFunction={updateShowSquares} />
         </div>
         <div className="flex-row w-1/2">
           <div className="mt-2 mb-2 ml-auto mr-auto font-medium">Change color</div>
