@@ -43,6 +43,7 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
         backgroundColor: isPrime ? activeColor : showSquares && isSquare(number) ? '#000222' : showEvens && isEven(number) ? '#022444' : '',
         fontSize: 6
       }}
+      title={number.toString()}
     >
       <div>{showNumbers ? number : null}</div>
     </div>
