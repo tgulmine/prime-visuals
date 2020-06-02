@@ -2,13 +2,13 @@ import * as React from 'react';
 import './ToggleDot.scss';
 
 interface ToggleDotProps {
-  toggleShowNumbers: Boolean;
+  toggleShow: Boolean;
   activeColor: string;
   onClickFunction: () => void;
 }
 
 const ToggleDot: React.FC<ToggleDotProps> = props => {
-  const { toggleShowNumbers } = props;
+  const { toggleShow } = props;
   const { activeColor } = props;
   const { onClickFunction } = props;
 
@@ -22,9 +22,7 @@ const ToggleDot: React.FC<ToggleDotProps> = props => {
       />
       <div
         className={
-          toggleShowNumbers
-            ? 'ToggleDot-On bg-blue-300 w-6 h-6 rounded-full absolute'
-            : 'ToggleDot-Off bg-blue-300 w-6 h-6 rounded-full absolute'
+          toggleShow ? 'ToggleDot-On bg-blue-300 w-6 h-6 rounded-full absolute' : 'ToggleDot-Off bg-blue-300 w-6 h-6 rounded-full absolute'
         }
         style={{
           backgroundColor: activeColor

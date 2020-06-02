@@ -48,11 +48,11 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
       <div className="bg-black flex-row justify-center mt-32">
         <div className="flex">
           <div className="mr-4 font-medium">Show numbers</div>
-          <ToggleDot toggleShowNumbers={toggleShowNumbers} activeColor={activeColor} onClickFunction={updateShowNumbers} />
+          <ToggleDot toggleShow={toggleShowNumbers} activeColor={activeColor} onClickFunction={updateShowNumbers} />
         </div>
         <div className="flex mt-2">
           <div className="mr-4 font-medium">Highlight squares</div>
-          <ToggleDot toggleShowNumbers={toggleShowNumbers} activeColor={activeColor} onClickFunction={updateShowSquares} />
+          <ToggleDot toggleShow={toggleShowSquares} activeColor={activeColor} onClickFunction={updateShowSquares} />
         </div>
         <div className="flex-row w-1/2">
           <div className="mt-2 mb-2 ml-auto mr-auto font-medium">Change color</div>
