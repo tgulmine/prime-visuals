@@ -6,6 +6,7 @@ import ToggleDot from '../ToggleDot/ToggleDot';
 interface SpiralOptionsProps {
   setShowNumbers: Dispatch<SetStateAction<boolean>>;
   setShowSquares: Dispatch<SetStateAction<boolean>>;
+  setShowEvens: Dispatch<SetStateAction<boolean>>;
   activeColor: string;
   changeActiveColor: (colorVar: any) => void;
 }
@@ -13,10 +14,12 @@ interface SpiralOptionsProps {
 const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   const { setShowNumbers } = props;
   const { setShowSquares } = props;
+  const { setShowEvens } = props;
   const { activeColor } = props;
 
   const [toggleShowNumbers, setToggleShowNumbers] = useState(true);
   const [toggleShowSquares, setToggleShowSquares] = useState(false);
+  const [toggleShowEvens, setToggleShowEvens] = useState(false);
 
   function updateShowNumbers() {
     setShowNumbers(!toggleShowNumbers);
@@ -26,6 +29,11 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   function updateShowSquares() {
     setShowSquares(!toggleShowSquares);
     setToggleShowSquares(!toggleShowSquares);
+  }
+
+  function updateShowEvens() {
+    setShowEvens(!toggleShowEvens);
+    setToggleShowEvens(!toggleShowEvens);
   }
 
   const colorList = [
@@ -53,6 +61,10 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
         <div className="flex mt-2">
           <div className="mr-4 font-medium">Highlight squares</div>
           <ToggleDot toggleShow={toggleShowSquares} activeColor={activeColor} onClickFunction={updateShowSquares} />
+        </div>
+        <div className="flex mt-2">
+          <div className="mr-4 font-medium">Highlight evens</div>
+          <ToggleDot toggleShow={toggleShowEvens} activeColor={activeColor} onClickFunction={updateShowEvens} />
         </div>
         <div className="flex-row w-1/2">
           <div className="mt-2 mb-2 ml-auto mr-auto font-medium">Change color</div>

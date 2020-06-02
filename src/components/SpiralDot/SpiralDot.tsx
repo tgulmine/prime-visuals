@@ -8,6 +8,7 @@ interface SpiralDotProps {
   isPrime: Boolean;
   showNumbers: Boolean;
   showSquares: Boolean;
+  showEvens: Boolean;
   activeColor: string;
 }
 
@@ -18,12 +19,17 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
   const { isPrime } = props;
   const { showNumbers } = props;
   const { showSquares } = props;
+  const { showEvens } = props;
   const { activeColor } = props;
 
   let boxSize = 16;
 
   function isSquare(n: number) {
     return n > 0 && Math.sqrt(n) % 1 === 0;
+  }
+
+  function isEven(n: number) {
+    return n > 0 && n % 2 === 0;
   }
 
   return (
@@ -34,7 +40,7 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
         width: boxSize,
         top: window.screen.availHeight / 2 - boxSize / 2 - boxSize * yPos,
         left: window.screen.availWidth / 2 - boxSize / 2 + boxSize * xPos,
-        backgroundColor: isPrime ? activeColor : showSquares && isSquare(number) ? '#000222' : '',
+        backgroundColor: isPrime ? activeColor : showSquares && isSquare(number) ? '#000222' : showEvens && isEven(number) ? '#022444' : '',
         fontSize: 6
       }}
     >
