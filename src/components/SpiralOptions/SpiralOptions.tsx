@@ -7,6 +7,7 @@ interface SpiralOptionsProps {
   setShowNumbers: Dispatch<SetStateAction<boolean>>;
   setShowSquares: Dispatch<SetStateAction<boolean>>;
   setShowEvens: Dispatch<SetStateAction<boolean>>;
+  setDotSize: Dispatch<SetStateAction<number>>;
   activeColor: string;
   changeActiveColor: (colorVar: any) => void;
 }
@@ -15,11 +16,13 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   const { setShowNumbers } = props;
   const { setShowSquares } = props;
   const { setShowEvens } = props;
+  const { setDotSize } = props;
   const { activeColor } = props;
 
   const [toggleShowNumbers, setToggleShowNumbers] = useState(true);
   const [toggleShowSquares, setToggleShowSquares] = useState(false);
   const [toggleShowEvens, setToggleShowEvens] = useState(false);
+  const [editDotSize, setEditDotSize] = useState(8);
 
   function updateShowNumbers() {
     setShowNumbers(!toggleShowNumbers);
@@ -34,6 +37,16 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   function updateShowEvens() {
     setShowEvens(!toggleShowEvens);
     setToggleShowEvens(!toggleShowEvens);
+  }
+
+  function updateDotSize(button: number) {
+    if (button === 1 && editDotSize > 0) {
+      setDotSize(editDotSize - 1);
+      setEditDotSize(editDotSize - 1);
+    } else if (button === 2 && editDotSize < 11) {
+      setDotSize(editDotSize + 1);
+      setEditDotSize(editDotSize + 1);
+    }
   }
 
   const colorList = [
@@ -73,6 +86,29 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
               colorList.map((color, index) => (
                 <ColorBox color={color} activeColor={activeColor} changeActiveColor={props.changeActiveColor} />
               ))}
+          </div>
+        </div>
+        <div className="flex-row mt-2 items-center">
+          <div className="mb-2 font-medium">Change size</div>
+          <div className="ml-2 flex font-medium text-base">
+            <button
+              className="mr-4 w-6 h-6 rounded focus:outline-none hover:p-2 active:h-8"
+              style={{
+                backgroundColor: activeColor
+              }}
+              onClick={() => updateDotSize(1)}
+            >
+              -
+            </button>
+            <button
+              className="w-6 h-6 rounded focus:outline-none"
+              style={{
+                backgroundColor: activeColor
+              }}
+              onClick={() => updateDotSize(2)}
+            >
+              +
+            </button>
           </div>
         </div>
       </div>
