@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, SetStateAction, Dispatch } from 'react';
 import SpiralDot from '../SpiralDot/SpiralDot';
 import SpiralOptions from '../SpiralOptions/SpiralOptions';
 import primeList from '../../prime-list-big.json';
@@ -6,19 +6,23 @@ import primeList from '../../prime-list-big.json';
 interface SpiralProps {
   min: number;
   max: number;
+  startDotSize: number;
   activeColor: string;
   changeActiveColor: (colorVar: any) => void;
+  setMaxNumber: Dispatch<SetStateAction<number>>;
 }
 
 const Spiral: React.FC<SpiralProps> = props => {
   const { min } = props;
   const { max } = props;
+  const { startDotSize } = props;
   const { activeColor } = props;
+  const { setMaxNumber } = props;
 
   const [showNumbers, setShowNumbers] = useState(true);
   const [showSquares, setShowSquares] = useState(false);
   const [showEvens, setShowEvens] = useState(false);
-  const [dotSize, setDotSize] = useState(8);
+  const [dotSize, setDotSize] = useState(startDotSize);
 
   let posX = 0,
     posY = 0,
@@ -81,7 +85,7 @@ const Spiral: React.FC<SpiralProps> = props => {
   }
 
   return (
-    <div className="w-1/4">
+    <div className="w-1/4 overflow-auto">
       {numberList &&
         numberList.map((n, index) => (
           <SpiralDot
@@ -102,6 +106,8 @@ const Spiral: React.FC<SpiralProps> = props => {
           setShowSquares={setShowSquares}
           setShowEvens={setShowEvens}
           setDotSize={setDotSize}
+          setMaxNumber={setMaxNumber}
+          startDotSize={startDotSize}
           activeColor={activeColor}
           changeActiveColor={props.changeActiveColor}
         />

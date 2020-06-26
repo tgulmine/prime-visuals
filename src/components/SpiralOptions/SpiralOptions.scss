@@ -8,4 +8,11 @@
     transition: all 0.3s ease-in-out;
 
   }
+  &-removeSpinners {
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none !important; 
+      margin: 0 !important; 
+    }
+  }
 }

@@ -8,6 +8,8 @@ interface SpiralOptionsProps {
   setShowSquares: Dispatch<SetStateAction<boolean>>;
   setShowEvens: Dispatch<SetStateAction<boolean>>;
   setDotSize: Dispatch<SetStateAction<number>>;
+  setMaxNumber: Dispatch<SetStateAction<number>>;
+  startDotSize: number;
   activeColor: string;
   changeActiveColor: (colorVar: any) => void;
 }
@@ -17,12 +19,15 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   const { setShowSquares } = props;
   const { setShowEvens } = props;
   const { setDotSize } = props;
+  const { setMaxNumber } = props;
+  const { startDotSize } = props;
   const { activeColor } = props;
 
   const [toggleShowNumbers, setToggleShowNumbers] = useState(true);
   const [toggleShowSquares, setToggleShowSquares] = useState(false);
   const [toggleShowEvens, setToggleShowEvens] = useState(false);
-  const [editDotSize, setEditDotSize] = useState(8);
+  const [editDotSize, setEditDotSize] = useState(startDotSize);
+  const [newMaxNumber, setNewMaxNumber] = useState(1000);
 
   function updateShowNumbers() {
     setShowNumbers(!toggleShowNumbers);
@@ -49,6 +54,19 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
     }
   }
 
+  function updateMaxNumber() {
+    console.log('a');
+    var maxNumberElem: HTMLInputElement = document.getElementById('inputMaxNumber') as HTMLInputElement;
+    var maxNumberValue: any = maxNumberElem.value;
+    if (maxNumberValue > 48611) {
+      setNewMaxNumber(48611);
+      setMaxNumber(48611);
+    } else if (maxNumberValue > 0) {
+      setNewMaxNumber(maxNumberValue);
+      setMaxNumber(maxNumberValue);
+    }
+  }
+
   const colorList = [
     '#FBBF54',
     '#EE6B3B',
@@ -66,7 +84,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
 
   return (
     <div className="w-full flex justify-center items-center text-gray-200">
-      <div className="bg-black flex-row justify-center mt-32">
+      <div className=" bg-black z-10 flex-row justify-center mt-32">
         <div className="flex">
           <div className="mr-4 font-medium">Show numbers</div>
           <ToggleDot toggleShow={toggleShowNumbers} activeColor={activeColor} onClickFunction={updateShowNumbers} />
@@ -92,7 +110,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
           <div className="mb-2 font-medium">Change size</div>
           <div className="ml-2 flex font-medium text-base">
             <button
-              className="mr-4 w-6 h-6 rounded focus:outline-none hover:p-2 active:h-8"
+              className="mr-4 w-6 h-6 rounded focus:outline-none"
               style={{
                 backgroundColor: activeColor
               }}
@@ -108,6 +126,26 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
               onClick={() => updateDotSize(2)}
             >
               +
+            </button>
+          </div>
+        </div>
+        <div className="flex-row mt-2 items-center">
+          <div className="mb-2 font-medium">Max number</div>
+          <div className="flex items-center SpiralOptions-removeSpinners hover:SpiralOptions-removeSpinners active:SpiralOptions-removeSpinners">
+            <input
+              className="shadow border rounded w-1/4 py-2 px-2 text-gray-700 text-base leading-tight focus:outline-none focus:shadow-blackOutline"
+              id="inputMaxNumber"
+              type="number"
+              placeholder={newMaxNumber.toString()}
+            />
+            <button
+              className="ml-2 py-1 px-2 rounded focus:outline-none"
+              style={{
+                backgroundColor: activeColor
+              }}
+              onClick={() => updateMaxNumber()}
+            >
+              Change
             </button>
           </div>
         </div>

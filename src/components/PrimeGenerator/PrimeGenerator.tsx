@@ -4,7 +4,7 @@ const PrimeGenerator: React.FC = () => {
   let i = 2,
     j,
     primes: number[] = [],
-    max = 5000;
+    max = 5000; //vscode max json config to 5k
 
   while (primes.length < max) {
     if (i === 2) {
