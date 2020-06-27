@@ -100,7 +100,7 @@ const Spiral: React.FC<SpiralProps> = props => {
             activeColor={activeColor}
           />
         ))}
-      <div className="">
+      <div className="flex justify-end">
         <SpiralOptions
           setShowNumbers={setShowNumbers}
           setShowSquares={setShowSquares}

@@ -29,6 +29,11 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   const [editDotSize, setEditDotSize] = useState(startDotSize);
   const [newMaxNumber, setNewMaxNumber] = useState(1000);
 
+  const [isHidden, setIsHidden] = useState(false);
+
+  const optionsWidth = 300;
+  const buttonWidth = 50;
+
   function updateShowNumbers() {
     setShowNumbers(!toggleShowNumbers);
     setToggleShowNumbers(!toggleShowNumbers);
@@ -83,8 +88,31 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   ];
 
   return (
-    <div className="w-full flex justify-center items-center text-gray-200">
-      <div className=" bg-black z-10 flex-row justify-center mt-32">
+    <div
+      className="flex justify-center items-center text-gray-200 overflow-hidden"
+      style={{
+        width: optionsWidth
+      }}
+    >
+      <button
+        className={
+          isHidden ? 'SpiralOptions-buttonOn w-10 h-screen focus:outline-none' : 'SpiralOptions-buttonOff w-10 h-screen focus:outline-none'
+        }
+        style={{
+          width: buttonWidth
+        }}
+        onClick={() => setIsHidden(!isHidden)}
+      />
+      <div
+        className={
+          isHidden
+            ? 'SpiralOptions-hide bg-black z-10 flex-row justify-center mt-32'
+            : 'SpiralOptions-show bg-black z-10 flex-row justify-center mt-32'
+        }
+        style={{
+          width: optionsWidth - buttonWidth
+        }}
+      >
         <div className="flex">
           <div className="mr-4 font-medium">Show numbers</div>
           <ToggleDot toggleShow={toggleShowNumbers} activeColor={activeColor} onClickFunction={updateShowNumbers} />
