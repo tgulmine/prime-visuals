@@ -1,7 +1,9 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
 import './SpiralOptions.scss';
 import ColorBox from '../ColorBox/ColorBox';
 import ToggleDot from '../ToggleDot/ToggleDot';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight, faPlus, faMinus, faCalculator } from '@fortawesome/free-solid-svg-icons';
 
 interface SpiralOptionsProps {
   setShowNumbers: Dispatch<SetStateAction<boolean>>;
@@ -9,6 +11,8 @@ interface SpiralOptionsProps {
   setShowEvens: Dispatch<SetStateAction<boolean>>;
   setDotSize: Dispatch<SetStateAction<number>>;
   setMaxNumber: Dispatch<SetStateAction<number>>;
+  setSquareColor: Dispatch<SetStateAction<string>>;
+  setEvenColor: Dispatch<SetStateAction<string>>;
   startDotSize: number;
   activeColor: string;
   changeActiveColor: (colorVar: any) => void;
@@ -20,6 +24,8 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   const { setShowEvens } = props;
   const { setDotSize } = props;
   const { setMaxNumber } = props;
+  const { setSquareColor } = props;
+  const { setEvenColor } = props;
   const { startDotSize } = props;
   const { activeColor } = props;
 
@@ -33,6 +39,32 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
 
   const optionsWidth = 300;
   const buttonWidth = 50;
+
+  useEffect(() => {
+    setSquareColor(updateColor('square'));
+    setEvenColor(updateColor('even'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeColor]);
+
+  function updateColor(color: string) {
+    let k = 0;
+    for (let i = 0; i < colorList.length; i++) {
+      if (activeColor === colorList[i]) {
+        k = i;
+        break;
+      }
+    }
+    if (color === 'square') {
+      k += 4;
+      if (k >= colorList.length) k -= colorList.length;
+    } else {
+      k -= 4;
+      if (k < 0) k += colorList.length;
+    }
+    return colorList[k];
+  }
+
+  function setColors(color: string) {}
 
   function updateShowNumbers() {
     setShowNumbers(!toggleShowNumbers);
@@ -89,25 +121,27 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
 
   return (
     <div
-      className="flex justify-center items-center text-gray-200 overflow-hidden"
+      className="flex justify-center items-center text-gray-200 overflow-hidden z-10"
       style={{
         width: optionsWidth
       }}
     >
       <button
         className={
-          isHidden ? 'SpiralOptions-buttonOn w-10 h-screen focus:outline-none' : 'SpiralOptions-buttonOff w-10 h-screen focus:outline-none'
+          isHidden ? 'SpiralOptions-buttonOn h-screen w-10 focus:outline-none' : 'SpiralOptions-buttonOff w-10 h-screen focus:outline-none'
         }
         style={{
           width: buttonWidth
         }}
         onClick={() => setIsHidden(!isHidden)}
-      />
+      >
+        {isHidden ? <FontAwesomeIcon icon={faChevronLeft} /> : <FontAwesomeIcon icon={faChevronRight} />}
+      </button>
       <div
         className={
           isHidden
-            ? 'SpiralOptions-hide bg-black z-10 flex-row justify-center mt-32'
-            : 'SpiralOptions-show bg-black z-10 flex-row justify-center mt-32'
+            ? 'SpiralOptions-hide bg-black h-screen flex-row justify-center pl-4 pt-40 overflow-hidden'
+            : 'SpiralOptions-show bg-black h-screen flex-row justify-center pl-4 pt-40 overflow-hidden'
         }
         style={{
           width: optionsWidth - buttonWidth
@@ -140,20 +174,20 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
             <button
               className="mr-4 w-6 h-6 rounded focus:outline-none"
               style={{
-                backgroundColor: activeColor
+                color: activeColor
               }}
               onClick={() => updateDotSize(1)}
             >
-              -
+              <FontAwesomeIcon icon={faMinus} />
             </button>
             <button
               className="w-6 h-6 rounded focus:outline-none"
               style={{
-                backgroundColor: activeColor
+                color: activeColor
               }}
               onClick={() => updateDotSize(2)}
             >
-              +
+              <FontAwesomeIcon icon={faPlus} />
             </button>
           </div>
         </div>
@@ -161,7 +195,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
           <div className="mb-2 font-medium">Max number</div>
           <div className="flex items-center SpiralOptions-removeSpinners hover:SpiralOptions-removeSpinners active:SpiralOptions-removeSpinners">
             <input
-              className="shadow border rounded w-1/4 py-2 px-2 text-gray-700 text-base leading-tight focus:outline-none focus:shadow-blackOutline"
+              className="shadow border rounded w-5/18 py-2 px-2 text-gray-700 text-base leading-tight focus:outline-none focus:shadow-blackOutline"
               id="inputMaxNumber"
               type="number"
               placeholder={newMaxNumber.toString()}
@@ -169,11 +203,11 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
             <button
               className="ml-2 py-1 px-2 rounded focus:outline-none"
               style={{
-                backgroundColor: activeColor
+                color: activeColor
               }}
               onClick={() => updateMaxNumber()}
             >
-              Change
+              <FontAwesomeIcon icon={faCalculator} />
             </button>
           </div>
         </div>

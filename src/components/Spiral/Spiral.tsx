@@ -24,6 +24,9 @@ const Spiral: React.FC<SpiralProps> = props => {
   const [showEvens, setShowEvens] = useState(false);
   const [dotSize, setDotSize] = useState(startDotSize);
 
+  const [squareColor, setSquareColor] = useState('');
+  const [evenColor, setEvenColor] = useState('');
+
   let posX = 0,
     posY = 0,
     countIncrement = 1, //dir cima 1 esq baixo -2 dir cima 3 esq baixo -4 mas so positivo
@@ -85,7 +88,7 @@ const Spiral: React.FC<SpiralProps> = props => {
   }
 
   return (
-    <div className="w-1/4 overflow-auto">
+    <div className="overflow-auto">
       {numberList &&
         numberList.map((n, index) => (
           <SpiralDot
@@ -98,6 +101,8 @@ const Spiral: React.FC<SpiralProps> = props => {
             showEvens={showEvens}
             dotSize={dotSize}
             activeColor={activeColor}
+            squareColor={squareColor}
+            evenColor={evenColor}
           />
         ))}
       <div className="flex justify-end">
@@ -109,6 +114,8 @@ const Spiral: React.FC<SpiralProps> = props => {
           setMaxNumber={setMaxNumber}
           startDotSize={startDotSize}
           activeColor={activeColor}
+          setSquareColor={setSquareColor}
+          setEvenColor={setEvenColor}
           changeActiveColor={props.changeActiveColor}
         />
       </div>

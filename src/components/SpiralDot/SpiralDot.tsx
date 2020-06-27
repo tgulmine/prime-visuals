@@ -11,6 +11,8 @@ interface SpiralDotProps {
   showEvens: Boolean;
   dotSize: number;
   activeColor: string;
+  squareColor: string;
+  evenColor: string;
 }
 
 const SpiralDot: React.FC<SpiralDotProps> = props => {
@@ -23,8 +25,23 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
   const { showEvens } = props;
   const { dotSize } = props;
   const { activeColor } = props;
+  const { squareColor } = props;
+  const { evenColor } = props;
 
-  console.log('dot size', dotSize);
+  const colorList = [
+    '#FBBF54',
+    '#EE6B3B',
+    '#EC0F47',
+    '#A02C5D',
+    '#700460',
+    '#022C7A',
+    '#ABD96D',
+    '#15C286',
+    '#087353',
+    '#045459',
+    '#262949',
+    '#1A1333'
+  ];
 
   //7 sizes 0-6
   const boxSize = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
@@ -46,7 +63,13 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
         width: boxSize[dotSize],
         top: window.screen.availHeight / 2 - boxSize[dotSize] / 2 - boxSize[dotSize] * yPos,
         left: window.screen.availWidth / 2 - boxSize[dotSize] / 2 + boxSize[dotSize] * xPos,
-        backgroundColor: isPrime ? activeColor : showSquares && isSquare(number) ? '#000222' : showEvens && isEven(number) ? '#022444' : '',
+        backgroundColor: isPrime
+          ? activeColor
+          : showSquares && isSquare(number)
+          ? squareColor
+          : showEvens && isEven(number)
+          ? evenColor
+          : '',
         fontSize: fontSize[dotSize]
       }}
       title={number.toString()}
