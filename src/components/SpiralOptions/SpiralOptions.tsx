@@ -16,6 +16,7 @@ interface SpiralOptionsProps {
   startDotSize: number;
   activeColor: string;
   changeActiveColor: (colorVar: any) => void;
+  setSecondaryColor: Dispatch<SetStateAction<string>>;
 }
 
 const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
@@ -28,6 +29,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   const { setEvenColor } = props;
   const { startDotSize } = props;
   const { activeColor } = props;
+  const { setSecondaryColor } = props;
 
   const [toggleShowNumbers, setToggleShowNumbers] = useState(true);
   const [toggleShowSquares, setToggleShowSquares] = useState(false);
@@ -43,6 +45,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   useEffect(() => {
     setSquareColor(updateColor('square'));
     setEvenColor(updateColor('even'));
+    setSecondaryColor(updateColor('even'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeColor]);
 

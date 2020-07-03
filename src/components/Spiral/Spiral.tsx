@@ -9,6 +9,7 @@ interface SpiralProps {
   startDotSize: number;
   activeColor: string;
   changeActiveColor: (colorVar: any) => void;
+  setSecondaryColor: Dispatch<SetStateAction<string>>;
   setMaxNumber: Dispatch<SetStateAction<number>>;
 }
 
@@ -117,6 +118,7 @@ const Spiral: React.FC<SpiralProps> = props => {
           setSquareColor={setSquareColor}
           setEvenColor={setEvenColor}
           changeActiveColor={props.changeActiveColor}
+          setSecondaryColor={props.setSecondaryColor}
         />
       </div>
     </div>

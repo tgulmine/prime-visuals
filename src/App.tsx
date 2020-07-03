@@ -25,21 +25,22 @@ const App: React.FC = () => {
   ];
   const [maxNumber, setMaxNumber] = useState(1000);
   const [activeColor, setActiveColor] = useState(colorList[2]);
+  const [secondaryColor, setSecondaryColor] = useState(colorList[2]);
 
   function changeActiveColor(color: any) {
     setActiveColor(color);
-    console.log(color);
   }
 
   return (
     <div className="flex bg-black h-screen justify-between relative">
-      <Header activeColor={activeColor} />
+      <Header activeColor={activeColor} secondaryColor={secondaryColor} />
       <Spiral
         min={1}
         max={maxNumber}
         startDotSize={8}
         activeColor={activeColor}
         changeActiveColor={changeActiveColor}
+        setSecondaryColor={setSecondaryColor}
         setMaxNumber={setMaxNumber}
       />
     </div>
