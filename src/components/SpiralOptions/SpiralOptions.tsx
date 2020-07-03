@@ -64,8 +64,6 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
     return colorList[k];
   }
 
-  function setColors(color: string) {}
-
   function updateShowNumbers() {
     setShowNumbers(!toggleShowNumbers);
     setToggleShowNumbers(!toggleShowNumbers);

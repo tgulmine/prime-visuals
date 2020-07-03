@@ -28,21 +28,6 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
   const { squareColor } = props;
   const { evenColor } = props;
 
-  const colorList = [
-    '#FBBF54',
-    '#EE6B3B',
-    '#EC0F47',
-    '#A02C5D',
-    '#700460',
-    '#022C7A',
-    '#ABD96D',
-    '#15C286',
-    '#087353',
-    '#045459',
-    '#262949',
-    '#1A1333'
-  ];
-
   //7 sizes 0-6
   const boxSize = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
   const fontSize = [0, 0, 0, 0, 0, 3, 4, 5, 6, 7, 8, 9];

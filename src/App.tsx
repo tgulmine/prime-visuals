@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles/main.scss';
 import Spiral from './components/Spiral/Spiral';
 import Header from './components/Header/Header';
-import PrimeGenerator from './components/PrimeGenerator/PrimeGenerator';
+/* import PrimeGenerator from './components/PrimeGenerator/PrimeGenerator'; */
 
 const App: React.FC = () => {
   //fazer desenho das bordas da espiral
