@@ -18,7 +18,8 @@ const PyramidPage: React.FC = () => {
     '#262949',
     '#1A1333'
   ];
-  const [maxNumber, setMaxNumber] = useState(1000);
+  const [rows, setRows] = useState(4);
+  const [density, setDensity] = useState(30);
   const [activeColor, setActiveColor] = useState(colorList[2]);
   const [secondaryColor, setSecondaryColor] = useState(colorList[10]);
 
@@ -30,13 +31,13 @@ const PyramidPage: React.FC = () => {
     <div className="flex bg-black h-screen justify-between relative">
       <Header activeColor={activeColor} secondaryColor={secondaryColor} />
       <Pyramid
-        rows={1}
-        density={maxNumber}
+        rows={rows}
+        density={density}
         startDotSize={8}
         activeColor={activeColor}
         changeActiveColor={changeActiveColor}
         setSecondaryColor={setSecondaryColor}
-        setMaxNumber={setMaxNumber}
+        setRows={setRows}
       />
     </div>
   );

@@ -10,7 +10,7 @@ interface PyramidProps {
   activeColor: string;
   changeActiveColor: (colorVar: any) => void;
   setSecondaryColor: Dispatch<SetStateAction<string>>;
-  setMaxNumber: Dispatch<SetStateAction<number>>;
+  setRows: Dispatch<SetStateAction<number>>;
 }
 
 interface PyramidRow {
@@ -26,7 +26,7 @@ const Pyramid: React.FC<PyramidProps> = props => {
   const { density } = props;
   const { startDotSize } = props;
   const { activeColor } = props;
-  const { setMaxNumber } = props;
+  const { setRows } = props;
 
   const [showNumbers, setShowNumbers] = useState(true);
   const [showSquares, setShowSquares] = useState(false);
@@ -38,7 +38,8 @@ const Pyramid: React.FC<PyramidProps> = props => {
 
   let row = 0,
     cell = 0,
-    counter = 0;
+    counter = 0,
+    storeLastMult = 0;
 
   let numberList: any[] = [],
     isPrimeList: any[] = [],
@@ -47,24 +48,27 @@ const Pyramid: React.FC<PyramidProps> = props => {
 
   const pyramidStorage: PyramidRow[] = [];
 
-  for (row; row <= rows; row++) {
-    for (cell = 0; cell <= row + 1; cell++) {
-      let x = row + cell;
-      for (let i = 0; i <= density; i++) {
+  for (row; row < rows; row++) {
+    for (cell = 0; cell < row + 1; cell++) {
+      let x = density * (row + storeLastMult) + cell + 1;
+      for (let i = 0; i < density; i++) {
+        console.log('x', x);
         if (isPrime(x)) counter++;
-        x += row + cell;
+        x += row + 1;
       }
-      pyramidStorage[row].row[cell].primeCount = counter;
+      if (pyramidStorage[row]) pyramidStorage[row].row[cell].primeCount = counter;
+      console.log('row', row, 'cell', cell, 'counter', counter);
       counter = 0;
     }
+    storeLastMult += row;
   }
 
   function isPrime(x: number) {
     if (x === 2) return true;
     else {
-      for (let i = 0; i <= primeList.length; i++) {
+      for (let i = 0; i < primeList.length; i++) {
         if (x === primeList[i]) return true;
-        else if (x > primeList[i]) return false;
+        else if (x < primeList[i]) return false;
       }
     }
   }
@@ -93,7 +97,7 @@ const Pyramid: React.FC<PyramidProps> = props => {
           setShowSquares={setShowSquares}
           setShowEvens={setShowEvens}
           setDotSize={setDotSize}
-          setMaxNumber={setMaxNumber}
+          setRows={setRows}
           startDotSize={startDotSize}
           activeColor={activeColor}
           setSquareColor={setSquareColor}

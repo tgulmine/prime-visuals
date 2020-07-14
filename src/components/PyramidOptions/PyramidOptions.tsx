@@ -10,7 +10,7 @@ interface PyramidOptionsProps {
   setShowSquares: Dispatch<SetStateAction<boolean>>;
   setShowEvens: Dispatch<SetStateAction<boolean>>;
   setDotSize: Dispatch<SetStateAction<number>>;
-  setMaxNumber: Dispatch<SetStateAction<number>>;
+  setRows: Dispatch<SetStateAction<number>>;
   setSquareColor: Dispatch<SetStateAction<string>>;
   setEvenColor: Dispatch<SetStateAction<string>>;
   startDotSize: number;
@@ -24,7 +24,7 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
   const { setShowSquares } = props;
   const { setShowEvens } = props;
   const { setDotSize } = props;
-  const { setMaxNumber } = props;
+  const { setRows } = props;
   const { setSquareColor } = props;
   const { setEvenColor } = props;
   const { startDotSize } = props;
@@ -93,7 +93,7 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
   }
 
   function updateMaxNumber() {
-    console.log('a');
+    /* console.log('a');
     var maxNumberElem: HTMLInputElement = document.getElementById('inputMaxNumber') as HTMLInputElement;
     var maxNumberValue: any = maxNumberElem.value;
     if (maxNumberValue > 48611) {
@@ -102,7 +102,7 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
     } else if (maxNumberValue > 0) {
       setNewMaxNumber(maxNumberValue);
       setMaxNumber(maxNumberValue);
-    }
+    } */
   }
 
   const colorList = [
