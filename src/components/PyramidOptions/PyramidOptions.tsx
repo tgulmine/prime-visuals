@@ -11,8 +11,6 @@ interface PyramidOptionsProps {
   setShowEvens: Dispatch<SetStateAction<boolean>>;
   setDotSize: Dispatch<SetStateAction<number>>;
   setRows: Dispatch<SetStateAction<number>>;
-  setSquareColor: Dispatch<SetStateAction<string>>;
-  setEvenColor: Dispatch<SetStateAction<string>>;
   startDotSize: number;
   activeColor: string;
   changeActiveColor: (colorVar: any) => void;
@@ -25,8 +23,6 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
   const { setShowEvens } = props;
   const { setDotSize } = props;
   const { setRows } = props;
-  const { setSquareColor } = props;
-  const { setEvenColor } = props;
   const { startDotSize } = props;
   const { activeColor } = props;
   const { setSecondaryColor } = props;
@@ -43,8 +39,6 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
   const buttonWidth = 50;
 
   useEffect(() => {
-    setSquareColor(updateColor('square'));
-    setEvenColor(updateColor('even'));
     setSecondaryColor(updateColor('even'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeColor]);

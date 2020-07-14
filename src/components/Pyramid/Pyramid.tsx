@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction, Dispatch } from 'react';
+import React, { useState, useEffect, SetStateAction, Dispatch } from 'react';
 import PyramidDot from '../PyramidDot/PyramidDot';
 import PyramidOptions from '../PyramidOptions/PyramidOptions';
 import primeList from '../../prime-list-big.json';
@@ -14,7 +14,7 @@ interface PyramidProps {
 }
 
 interface PyramidRow {
-  row: PyramidCell[];
+  cell: PyramidCell[];
 }
 
 interface PyramidCell {
@@ -33,34 +33,41 @@ const Pyramid: React.FC<PyramidProps> = props => {
   const [showEvens, setShowEvens] = useState(false);
   const [dotSize, setDotSize] = useState(startDotSize);
 
-  const [squareColor, setSquareColor] = useState('');
-  const [evenColor, setEvenColor] = useState('');
+  const [fullPyramid, setFullPyramid] = useState<PyramidRow[]>([]);
 
   let row = 0,
     cell = 0,
     counter = 0,
     storeLastMult = 0;
 
-  let numberList: any[] = [],
-    isPrimeList: any[] = [],
-    posXList: any[] = [],
-    posYList: any[] = [];
+  useEffect(() => {
+    generatePyramid();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const pyramidStorage: PyramidRow[] = [];
-
-  for (row; row < rows; row++) {
-    for (cell = 0; cell < row + 1; cell++) {
-      let x = density * (row + storeLastMult) + cell + 1;
-      for (let i = 0; i < density; i++) {
-        console.log('x', x);
-        if (isPrime(x)) counter++;
-        x += row + 1;
+  function generatePyramid() {
+    let pyramidStorage: PyramidRow[] = [];
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < rows; j++) {
+        pyramidStorage[i].cell[j].primeCount = 0;
       }
-      if (pyramidStorage[row]) pyramidStorage[row].row[cell].primeCount = counter;
-      console.log('row', row, 'cell', cell, 'counter', counter);
-      counter = 0;
     }
-    storeLastMult += row;
+    for (row; row < rows; row++) {
+      for (cell = 0; cell < row + 1; cell++) {
+        let x = density * (row + storeLastMult) + cell + 1;
+        for (let i = 0; i < density; i++) {
+          /* console.log('x', x); */
+          if (isPrime(x)) counter++;
+          x += row + 1;
+        }
+        pyramidStorage[row].cell[cell].primeCount = counter;
+        /* console.log('row', row, 'cell', cell, 'counter', counter); */
+        counter = 0;
+      }
+      storeLastMult += row;
+    }
+    console.log(pyramidStorage);
+    setFullPyramid(pyramidStorage);
   }
 
   function isPrime(x: number) {
@@ -75,22 +82,22 @@ const Pyramid: React.FC<PyramidProps> = props => {
 
   return (
     <div className="overflow-auto">
-      {numberList &&
-        numberList.map((n, index) => (
-          <PyramidDot
-            number={numberList[index]}
-            xPos={posXList[index]}
-            yPos={posYList[index]}
-            isPrime={isPrimeList[index]}
-            showNumbers={showNumbers}
-            showSquares={showSquares}
-            showEvens={showEvens}
-            dotSize={dotSize}
-            activeColor={activeColor}
-            squareColor={squareColor}
-            evenColor={evenColor}
-          />
-        ))}
+      {console.log(fullPyramid)}
+      {fullPyramid &&
+        fullPyramid.map((r, indexR) =>
+          r.cell.map((c, indexC) => (
+            <PyramidDot
+              primeCount={fullPyramid[indexR].cell[indexC].primeCount}
+              row={indexR}
+              cell={indexC}
+              density={density}
+              maxRows={rows}
+              showNumbers={showNumbers}
+              dotSize={dotSize}
+              activeColor={activeColor}
+            />
+          ))
+        )}
       <div className="flex justify-end">
         <PyramidOptions
           setShowNumbers={setShowNumbers}
@@ -100,8 +107,6 @@ const Pyramid: React.FC<PyramidProps> = props => {
           setRows={setRows}
           startDotSize={startDotSize}
           activeColor={activeColor}
-          setSquareColor={setSquareColor}
-          setEvenColor={setEvenColor}
           changeActiveColor={props.changeActiveColor}
           setSecondaryColor={props.setSecondaryColor}
         />
