@@ -1,0 +1,38 @@
+$optionsWidth: 300px;
+$buttonWidth: 50px;
+
+.SpiralOptions {
+  &-toggleDotOff {
+    transform: translateX(0%);
+    transition: all 0.3s ease-in-out;
+  }
+  &-toggleDotOn {
+    transform: translateX(100%);
+    transition: all 0.3s ease-in-out;
+
+  }
+  &-removeSpinners {
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none !important; 
+      margin: 0 !important; 
+    }
+  }
+  &-hide {
+    transform: translateX($optionsWidth - $buttonWidth);
+    transition: all 0.5s ease-in-out;
+    /* position: absolute; */
+  }
+  &-show {
+    transform: translateX(0%);
+    transition: all 0.5s ease-in-out;
+  }
+  &-buttonOff {
+    transform: translateX(0%);
+    transition: all 0.5s ease-in-out;
+  }
+  &-buttonOn {
+    transform: translateX($optionsWidth - $buttonWidth);
+    transition: all 0.5s ease-in-out;
+  }
+}

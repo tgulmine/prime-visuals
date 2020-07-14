@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header/Header';
 /* import PrimeGenerator from './components/PrimeGenerator/PrimeGenerator'; */
 
-const App: React.FC = () => {
+const HomePage: React.FC = () => {
   const colorList = [
     '#FBBF54',
     '#EE6B3B',
@@ -31,4 +31,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default HomePage;

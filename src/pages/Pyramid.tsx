@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import Spiral from '../components/Spiral/Spiral';
+import Pyramid from '../components/Pyramid/Pyramid';
 import Header from '../components/Header/Header';
 /* import PrimeGenerator from './components/PrimeGenerator/PrimeGenerator'; */
 
-const SpiralPage: React.FC = () => {
-  //fazer desenho das bordas da espiral
-  //criar vetor com os estados, borda cima, baixo, esquerda, direita e combinações
-  //na função da spiral setar o estado, criar prop no dot e mudar a border
-
+const PyramidPage: React.FC = () => {
   const colorList = [
     '#FBBF54',
     '#EE6B3B',
@@ -33,9 +29,9 @@ const SpiralPage: React.FC = () => {
   return (
     <div className="flex bg-black h-screen justify-between relative">
       <Header activeColor={activeColor} secondaryColor={secondaryColor} />
-      <Spiral
-        min={1}
-        max={maxNumber}
+      <Pyramid
+        rows={1}
+        density={maxNumber}
         startDotSize={8}
         activeColor={activeColor}
         changeActiveColor={changeActiveColor}
@@ -46,4 +42,4 @@ const SpiralPage: React.FC = () => {
   );
 };
 
-export default SpiralPage;
+export default PyramidPage;
