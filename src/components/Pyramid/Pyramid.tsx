@@ -14,11 +14,7 @@ interface PyramidProps {
 }
 
 interface PyramidRow {
-  cell: PyramidCell[];
-}
-
-interface PyramidCell {
-  primeCount: number;
+  cell: number[];
 }
 
 const Pyramid: React.FC<PyramidProps> = props => {
@@ -46,28 +42,30 @@ const Pyramid: React.FC<PyramidProps> = props => {
   }, []);
 
   function generatePyramid() {
-    let pyramidStorage: PyramidRow[] = [];
-    for (let i = 0; i < rows; i++) {
-      for (let j = 0; j < rows; j++) {
-        pyramidStorage[i].cell[j].primeCount = 0;
-      }
-    }
+    const pyramidStorage: PyramidRow[] = [];
+    let pyramidRow: PyramidRow = { cell: [] };
+
     for (row; row < rows; row++) {
+      pyramidRow = emptyPyramidRow();
       for (cell = 0; cell < row + 1; cell++) {
         let x = density * (row + storeLastMult) + cell + 1;
         for (let i = 0; i < density; i++) {
-          /* console.log('x', x); */
           if (isPrime(x)) counter++;
           x += row + 1;
         }
-        pyramidStorage[row].cell[cell].primeCount = counter;
-        /* console.log('row', row, 'cell', cell, 'counter', counter); */
+        pyramidRow.cell.push(counter);
         counter = 0;
       }
+      pyramidStorage.push(pyramidRow);
       storeLastMult += row;
+      console.log('storage', pyramidStorage);
     }
-    console.log(pyramidStorage);
+    console.log('storage', pyramidStorage);
     setFullPyramid(pyramidStorage);
+  }
+
+  function emptyPyramidRow() {
+    return { cell: [] };
   }
 
   function isPrime(x: number) {
@@ -82,12 +80,12 @@ const Pyramid: React.FC<PyramidProps> = props => {
 
   return (
     <div className="overflow-auto">
-      {console.log(fullPyramid)}
+      {console.log('fullPyramid', fullPyramid)}
       {fullPyramid &&
         fullPyramid.map((r, indexR) =>
           r.cell.map((c, indexC) => (
             <PyramidDot
-              primeCount={fullPyramid[indexR].cell[indexC].primeCount}
+              primeCount={fullPyramid[indexR].cell[indexC]}
               row={indexR}
               cell={indexC}
               density={density}

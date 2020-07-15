@@ -37,7 +37,7 @@ const PyramidDot: React.FC<PyramidDotProps> = props => {
       style={{
         height: boxSize[dotSize],
         width: boxSize[dotSize],
-        top: window.screen.availHeight / 2 - boxSize[dotSize] / 2 - boxSize[dotSize] * yPos,
+        top: window.screen.availHeight / 2 - boxSize[dotSize] / 2 + boxSize[dotSize] * yPos,
         left: window.screen.availWidth / 2 - boxSize[dotSize] / 2 + boxSize[dotSize] * xPos,
         backgroundColor: activeColor,
         fontSize: fontSize[dotSize]
