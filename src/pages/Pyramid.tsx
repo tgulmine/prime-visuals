@@ -18,7 +18,7 @@ const PyramidPage: React.FC = () => {
     'rgba(38, 41, 73, 1)',
     'rgba(26, 19, 51, 1)'
   ];
-  const [rows, setRows] = useState(4);
+  const [rows, setRows] = useState(20);
   const [density, setDensity] = useState(30);
   const [activeColor, setActiveColor] = useState(colorList[2]);
   const [secondaryColor, setSecondaryColor] = useState(colorList[10]);

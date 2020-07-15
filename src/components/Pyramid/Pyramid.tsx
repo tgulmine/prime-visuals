@@ -24,9 +24,9 @@ const Pyramid: React.FC<PyramidProps> = props => {
   const { activeColor } = props;
   const { setRows } = props;
 
-  const [showNumbers, setShowNumbers] = useState(true);
-  const [showSquares, setShowSquares] = useState(false);
-  const [showEvens, setShowEvens] = useState(false);
+  const [showNumbers, setShowNumbers] = useState(false);
+  const [showInverseColors, setInverseColors] = useState(false);
+  const [showTransparency, setTransparency] = useState(false);
   const [dotSize, setDotSize] = useState(startDotSize);
 
   const [fullPyramid, setFullPyramid] = useState<PyramidRow[]>([]);
@@ -91,6 +91,8 @@ const Pyramid: React.FC<PyramidProps> = props => {
               density={density}
               maxRows={rows}
               showNumbers={showNumbers}
+              showInverseColors={showInverseColors}
+              showTransparency={showTransparency}
               dotSize={dotSize}
               activeColor={activeColor}
             />
@@ -99,8 +101,8 @@ const Pyramid: React.FC<PyramidProps> = props => {
       <div className="flex justify-end">
         <PyramidOptions
           setShowNumbers={setShowNumbers}
-          setShowSquares={setShowSquares}
-          setShowEvens={setShowEvens}
+          setInverseColors={setInverseColors}
+          setTransparency={setTransparency}
           setDotSize={setDotSize}
           setRows={setRows}
           startDotSize={startDotSize}

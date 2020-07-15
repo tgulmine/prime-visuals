@@ -7,8 +7,8 @@ import { faChevronLeft, faChevronRight, faPlus, faMinus, faCalculator } from '@f
 
 interface PyramidOptionsProps {
   setShowNumbers: Dispatch<SetStateAction<boolean>>;
-  setShowSquares: Dispatch<SetStateAction<boolean>>;
-  setShowEvens: Dispatch<SetStateAction<boolean>>;
+  setInverseColors: Dispatch<SetStateAction<boolean>>;
+  setTransparency: Dispatch<SetStateAction<boolean>>;
   setDotSize: Dispatch<SetStateAction<number>>;
   setRows: Dispatch<SetStateAction<number>>;
   startDotSize: number;
@@ -19,17 +19,17 @@ interface PyramidOptionsProps {
 
 const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
   const { setShowNumbers } = props;
-  const { setShowSquares } = props;
-  const { setShowEvens } = props;
+  const { setInverseColors } = props;
+  const { setTransparency } = props;
   const { setDotSize } = props;
   const { setRows } = props;
   const { startDotSize } = props;
   const { activeColor } = props;
   const { setSecondaryColor } = props;
 
-  const [toggleShowNumbers, setToggleShowNumbers] = useState(true);
-  const [toggleShowSquares, setToggleShowSquares] = useState(false);
-  const [toggleShowEvens, setToggleShowEvens] = useState(false);
+  const [toggleShowNumbers, setToggleShowNumbers] = useState(false);
+  const [toggleInverseColors, setToggleInverseColors] = useState(false);
+  const [toggleTransparency, setToggleTransparency] = useState(false);
   const [editDotSize, setEditDotSize] = useState(startDotSize);
   const [newMaxNumber, setNewMaxNumber] = useState(1000);
 
@@ -66,14 +66,14 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
     setToggleShowNumbers(!toggleShowNumbers);
   }
 
-  function updateShowSquares() {
-    setShowSquares(!toggleShowSquares);
-    setToggleShowSquares(!toggleShowSquares);
+  function updateInverseColors() {
+    setInverseColors(!toggleInverseColors);
+    setToggleInverseColors(!toggleInverseColors);
   }
 
-  function updateShowEvens() {
-    setShowEvens(!toggleShowEvens);
-    setToggleShowEvens(!toggleShowEvens);
+  function updateTransparency() {
+    setTransparency(!toggleTransparency);
+    setToggleTransparency(!toggleTransparency);
   }
 
   function updateDotSize(button: number) {
@@ -100,18 +100,18 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
   }
 
   const colorList = [
-    '#FBBF54',
-    '#EE6B3B',
-    '#EC0F47',
-    '#A02C5D',
-    '#700460',
-    '#022C7A',
-    '#ABD96D',
-    '#15C286',
-    '#087353',
-    '#045459',
-    '#262949',
-    '#1A1333'
+    'rgba(251, 191, 84, 1)',
+    'rgba(238, 107, 59, 1)',
+    'rgba(236, 15, 71, 1)',
+    'rgba(160, 44, 93, 1)',
+    'rgba(112, 4, 96, 1)',
+    'rgba(2, 44, 122, 1)',
+    'rgba(171, 217, 109, 1)',
+    'rgba(21, 194, 134, 1)',
+    'rgba(8, 115, 83, 1)',
+    'rgba(4, 84, 89, 1)',
+    'rgba(38, 41, 73, 1)',
+    'rgba(26, 19, 51, 1)'
   ];
 
   return (
@@ -145,16 +145,16 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
         }}
       >
         <div className="flex">
-          <div className="mr-4 font-medium">Show numbers</div>
+          <div className="mr-4 font-medium">Show prime count</div>
           <ToggleDot toggleShow={toggleShowNumbers} activeColor={activeColor} onClickFunction={updateShowNumbers} />
         </div>
         <div className="flex mt-2">
-          <div className="mr-4 font-medium">Highlight squares</div>
-          <ToggleDot toggleShow={toggleShowSquares} activeColor={activeColor} onClickFunction={updateShowSquares} />
+          <div className="mr-4 font-medium">Inverse colors</div>
+          <ToggleDot toggleShow={toggleInverseColors} activeColor={activeColor} onClickFunction={updateInverseColors} />
         </div>
         <div className="flex mt-2">
-          <div className="mr-4 font-medium">Highlight evens</div>
-          <ToggleDot toggleShow={toggleShowEvens} activeColor={activeColor} onClickFunction={updateShowEvens} />
+          <div className="mr-4 font-medium">Transparency</div>
+          <ToggleDot toggleShow={toggleTransparency} activeColor={activeColor} onClickFunction={updateTransparency} />
         </div>
         <div className="flex-row w-1/2">
           <div className="mt-2 mb-2 ml-auto mr-auto font-medium">Change color</div>
