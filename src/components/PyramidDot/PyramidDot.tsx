@@ -58,7 +58,7 @@ const PyramidDot: React.FC<PyramidDotProps> = props => {
         backgroundColor: getBgColor(),
         fontSize: fontSize[dotSize]
       }}
-      title={primesPerDensity.toString()}
+      title={primeCount.toString()}
     >
       <div>{showNumbers ? primeCount : null}</div>
     </div>

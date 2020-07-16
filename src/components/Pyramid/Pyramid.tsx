@@ -11,6 +11,7 @@ interface PyramidProps {
   changeActiveColor: (colorVar: any) => void;
   setSecondaryColor: Dispatch<SetStateAction<string>>;
   setRows: Dispatch<SetStateAction<number>>;
+  setDensity: Dispatch<SetStateAction<number>>;
 }
 
 interface PyramidRow {
@@ -23,6 +24,7 @@ const Pyramid: React.FC<PyramidProps> = props => {
   const { startDotSize } = props;
   const { activeColor } = props;
   const { setRows } = props;
+  const { setDensity } = props;
 
   const [showNumbers, setShowNumbers] = useState(false);
   const [showInverseColors, setInverseColors] = useState(false);
@@ -30,6 +32,8 @@ const Pyramid: React.FC<PyramidProps> = props => {
   const [dotSize, setDotSize] = useState(startDotSize);
 
   const [fullPyramid, setFullPyramid] = useState<PyramidRow[]>([]);
+
+  console.log('rows', rows, 'density', density);
 
   let row = 0,
     cell = 0,
@@ -39,7 +43,7 @@ const Pyramid: React.FC<PyramidProps> = props => {
   useEffect(() => {
     generatePyramid();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [rows, density]);
 
   function generatePyramid() {
     const pyramidStorage: PyramidRow[] = [];
@@ -58,9 +62,7 @@ const Pyramid: React.FC<PyramidProps> = props => {
       }
       pyramidStorage.push(pyramidRow);
       storeLastMult += row;
-      console.log('storage', pyramidStorage);
     }
-    console.log('storage', pyramidStorage);
     setFullPyramid(pyramidStorage);
   }
 
@@ -80,7 +82,6 @@ const Pyramid: React.FC<PyramidProps> = props => {
 
   return (
     <div className="overflow-auto">
-      {console.log('fullPyramid', fullPyramid)}
       {fullPyramid &&
         fullPyramid.map((r, indexR) =>
           r.cell.map((c, indexC) => (
@@ -105,6 +106,7 @@ const Pyramid: React.FC<PyramidProps> = props => {
           setTransparency={setTransparency}
           setDotSize={setDotSize}
           setRows={setRows}
+          setDensity={setDensity}
           startDotSize={startDotSize}
           activeColor={activeColor}
           changeActiveColor={props.changeActiveColor}

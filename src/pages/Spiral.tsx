@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Spiral from '../components/Spiral/Spiral';
 import Header from '../components/Header/Header';
+import { colorList } from '../utils/colorList';
 /* import PrimeGenerator from './components/PrimeGenerator/PrimeGenerator'; */
 
 const SpiralPage: React.FC = () => {
@@ -8,20 +9,6 @@ const SpiralPage: React.FC = () => {
   //criar vetor com os estados, borda cima, baixo, esquerda, direita e combinações
   //na função da spiral setar o estado, criar prop no dot e mudar a border
 
-  const colorList = [
-    '#FBBF54',
-    '#EE6B3B',
-    '#EC0F47',
-    '#A02C5D',
-    '#700460',
-    '#022C7A',
-    '#ABD96D',
-    '#15C286',
-    '#087353',
-    '#045459',
-    '#262949',
-    '#1A1333'
-  ];
   const [maxNumber, setMaxNumber] = useState(1000);
   const [activeColor, setActiveColor] = useState(colorList[2]);
   const [secondaryColor, setSecondaryColor] = useState(colorList[10]);

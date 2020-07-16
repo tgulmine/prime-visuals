@@ -2,6 +2,7 @@ import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
 import './PyramidOptions.scss';
 import ColorBox from '../ColorBox/ColorBox';
 import ToggleDot from '../ToggleDot/ToggleDot';
+import { colorList } from '../../utils/colorList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faPlus, faMinus, faCalculator } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,6 +12,7 @@ interface PyramidOptionsProps {
   setTransparency: Dispatch<SetStateAction<boolean>>;
   setDotSize: Dispatch<SetStateAction<number>>;
   setRows: Dispatch<SetStateAction<number>>;
+  setDensity: Dispatch<SetStateAction<number>>;
   startDotSize: number;
   activeColor: string;
   changeActiveColor: (colorVar: any) => void;
@@ -23,6 +25,7 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
   const { setTransparency } = props;
   const { setDotSize } = props;
   const { setRows } = props;
+  const { setDensity } = props;
   const { startDotSize } = props;
   const { activeColor } = props;
   const { setSecondaryColor } = props;
@@ -31,7 +34,8 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
   const [toggleInverseColors, setToggleInverseColors] = useState(false);
   const [toggleTransparency, setToggleTransparency] = useState(false);
   const [editDotSize, setEditDotSize] = useState(startDotSize);
-  const [newMaxNumber, setNewMaxNumber] = useState(1000);
+  const [newRows, setNewRows] = useState(20);
+  const [newDensity, setNewDensity] = useState(30);
 
   const [isHidden, setIsHidden] = useState(false);
 
@@ -86,33 +90,27 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
     }
   }
 
-  function updateMaxNumber() {
-    /* console.log('a');
-    var maxNumberElem: HTMLInputElement = document.getElementById('inputMaxNumber') as HTMLInputElement;
-    var maxNumberValue: any = maxNumberElem.value;
-    if (maxNumberValue > 48611) {
-      setNewMaxNumber(48611);
-      setMaxNumber(48611);
-    } else if (maxNumberValue > 0) {
-      setNewMaxNumber(maxNumberValue);
-      setMaxNumber(maxNumberValue);
-    } */
+  function updateRows() {
+    if (newRows > 100) {
+      setNewRows(100);
+      setRows(100);
+    } else if (newRows > 0) {
+      setNewRows(newRows);
+      setRows(newRows);
+    }
+    console.log('rows', newRows);
   }
 
-  const colorList = [
-    'rgba(251, 191, 84, 1)',
-    'rgba(238, 107, 59, 1)',
-    'rgba(236, 15, 71, 1)',
-    'rgba(160, 44, 93, 1)',
-    'rgba(112, 4, 96, 1)',
-    'rgba(2, 44, 122, 1)',
-    'rgba(171, 217, 109, 1)',
-    'rgba(21, 194, 134, 1)',
-    'rgba(8, 115, 83, 1)',
-    'rgba(4, 84, 89, 1)',
-    'rgba(38, 41, 73, 1)',
-    'rgba(26, 19, 51, 1)'
-  ];
+  function updateDensity() {
+    if (newDensity > 100) {
+      setNewDensity(100);
+      setDensity(100);
+    } else if (newDensity > 0) {
+      setNewDensity(newDensity);
+      setDensity(newDensity);
+    }
+    console.log('density', newDensity);
+  }
 
   return (
     <div
@@ -189,20 +187,48 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
           </div>
         </div>
         <div className="flex-row mt-2 items-center">
-          <div className="mb-2 font-medium">Max number</div>
+          <div className="mb-2 font-medium">Rows</div>
           <div className="flex items-center PyramidOptions-removeSpinners hover:PyramidOptions-removeSpinners active:PyramidOptions-removeSpinners">
             <input
               className="shadow border rounded w-5/18 py-2 px-2 text-gray-700 text-base leading-tight focus:outline-none focus:shadow-blackOutline"
-              id="inputMaxNumber"
+              id="inputNewRows"
+              value={newRows}
+              onChange={e => {
+                setNewRows(e.target.valueAsNumber);
+              }}
               type="number"
-              placeholder={newMaxNumber.toString()}
+              placeholder="Rows"
             />
             <button
               className="ml-2 py-1 px-2 rounded focus:outline-none"
               style={{
                 color: activeColor
               }}
-              onClick={() => updateMaxNumber()}
+              onClick={() => updateRows()}
+            >
+              <FontAwesomeIcon icon={faCalculator} />
+            </button>
+          </div>
+        </div>
+        <div className="flex-row mt-2 items-center">
+          <div className="mb-2 font-medium">Density</div>
+          <div className="flex items-center PyramidOptions-removeSpinners hover:PyramidOptions-removeSpinners active:PyramidOptions-removeSpinners">
+            <input
+              className="shadow border rounded w-5/18 py-2 px-2 text-gray-700 text-base leading-tight focus:outline-none focus:shadow-blackOutline"
+              id="inputNewDensity"
+              value={newDensity}
+              onChange={e => {
+                setNewDensity(e.target.valueAsNumber);
+              }}
+              type="number"
+              placeholder="Density"
+            />
+            <button
+              className="ml-2 py-1 px-2 rounded focus:outline-none"
+              style={{
+                color: activeColor
+              }}
+              onClick={() => updateDensity()}
             >
               <FontAwesomeIcon icon={faCalculator} />
             </button>

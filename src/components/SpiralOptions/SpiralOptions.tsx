@@ -2,6 +2,7 @@ import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
 import './SpiralOptions.scss';
 import ColorBox from '../ColorBox/ColorBox';
 import ToggleDot from '../ToggleDot/ToggleDot';
+import { colorList } from '../../utils/colorList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faPlus, faMinus, faCalculator } from '@fortawesome/free-solid-svg-icons';
 
@@ -93,32 +94,14 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   }
 
   function updateMaxNumber() {
-    console.log('a');
-    var maxNumberElem: HTMLInputElement = document.getElementById('inputMaxNumber') as HTMLInputElement;
-    var maxNumberValue: any = maxNumberElem.value;
-    if (maxNumberValue > 48611) {
+    if (newMaxNumber > 48611) {
       setNewMaxNumber(48611);
       setMaxNumber(48611);
-    } else if (maxNumberValue > 0) {
-      setNewMaxNumber(maxNumberValue);
-      setMaxNumber(maxNumberValue);
+    } else if (newMaxNumber > 0) {
+      setNewMaxNumber(newMaxNumber);
+      setMaxNumber(newMaxNumber);
     }
   }
-
-  const colorList = [
-    '#FBBF54',
-    '#EE6B3B',
-    '#EC0F47',
-    '#A02C5D',
-    '#700460',
-    '#022C7A',
-    '#ABD96D',
-    '#15C286',
-    '#087353',
-    '#045459',
-    '#262949',
-    '#1A1333'
-  ];
 
   return (
     <div
@@ -198,8 +181,12 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
             <input
               className="shadow border rounded w-5/18 py-2 px-2 text-gray-700 text-base leading-tight focus:outline-none focus:shadow-blackOutline"
               id="inputMaxNumber"
+              value={newMaxNumber}
+              onChange={e => {
+                setNewMaxNumber(e.target.valueAsNumber);
+              }}
               type="number"
-              placeholder={newMaxNumber.toString()}
+              placeholder="Max Number"
             />
             <button
               className="ml-2 py-1 px-2 rounded focus:outline-none"
