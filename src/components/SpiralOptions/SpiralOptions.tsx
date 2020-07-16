@@ -16,7 +16,7 @@ interface SpiralOptionsProps {
   setEvenColor: Dispatch<SetStateAction<string>>;
   startDotSize: number;
   activeColor: string;
-  changeActiveColor: (colorVar: any) => void;
+  setActiveColor: Dispatch<SetStateAction<string>>;
   setSecondaryColor: Dispatch<SetStateAction<string>>;
 }
 
@@ -30,6 +30,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   const { setEvenColor } = props;
   const { startDotSize } = props;
   const { activeColor } = props;
+  const { setActiveColor } = props;
   const { setSecondaryColor } = props;
 
   const [toggleShowNumbers, setToggleShowNumbers] = useState(true);
@@ -147,9 +148,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
           <div className="mt-2 mb-2 ml-auto mr-auto font-medium">Change color</div>
           <div className="flex flex-wrap">
             {colorList &&
-              colorList.map((color, index) => (
-                <ColorBox color={color} activeColor={activeColor} changeActiveColor={props.changeActiveColor} />
-              ))}
+              colorList.map((color, index) => <ColorBox color={color} activeColor={activeColor} setActiveColor={setActiveColor} />)}
           </div>
         </div>
         <div className="flex-row mt-2 items-center">

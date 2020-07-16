@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/Header/Header';
-import { colorList } from '../utils/colorList';
 /* import PrimeGenerator from './components/PrimeGenerator/PrimeGenerator'; */
 
-const HomePage: React.FC = () => {
-  const [activeColor, setActiveColor] = useState(colorList[2]);
-  const [secondaryColor, setSecondaryColor] = useState(colorList[10]);
+interface HomePageProps {
+  activeColor: string;
+  secondaryColor: string;
+}
+
+const HomePage: React.FC<HomePageProps> = props => {
+  const { activeColor } = props;
+  const { secondaryColor } = props;
 
   return (
     <div className="flex bg-black h-screen relative">

@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 interface ColorBoxProps {
   color: string;
   activeColor: string;
-  changeActiveColor: (colorVar: any) => void;
+  setActiveColor: Dispatch<SetStateAction<string>>;
 }
 
 const ColorBox: React.FC<ColorBoxProps> = props => {
@@ -17,7 +17,7 @@ const ColorBox: React.FC<ColorBoxProps> = props => {
         borderColor: color,
         backgroundColor: color === activeColor ? color : undefined
       }}
-      onClick={() => props.changeActiveColor(color)}
+      onClick={() => props.setActiveColor(color)}
     />
   );
 };

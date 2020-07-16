@@ -8,7 +8,7 @@ interface PyramidProps {
   density: number;
   startDotSize: number;
   activeColor: string;
-  changeActiveColor: (colorVar: any) => void;
+  setActiveColor: Dispatch<SetStateAction<string>>;
   setSecondaryColor: Dispatch<SetStateAction<string>>;
   setRows: Dispatch<SetStateAction<number>>;
   setDensity: Dispatch<SetStateAction<number>>;
@@ -23,6 +23,8 @@ const Pyramid: React.FC<PyramidProps> = props => {
   const { density } = props;
   const { startDotSize } = props;
   const { activeColor } = props;
+  const { setActiveColor } = props;
+  const { setSecondaryColor } = props;
   const { setRows } = props;
   const { setDensity } = props;
 
@@ -109,8 +111,8 @@ const Pyramid: React.FC<PyramidProps> = props => {
           setDensity={setDensity}
           startDotSize={startDotSize}
           activeColor={activeColor}
-          changeActiveColor={props.changeActiveColor}
-          setSecondaryColor={props.setSecondaryColor}
+          setActiveColor={setActiveColor}
+          setSecondaryColor={setSecondaryColor}
         />
       </div>
     </div>
