@@ -1,4 +1,5 @@
 import * as React from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BrowserRouter as Route, Link } from 'react-router-dom';
 
 interface HeaderProps {
