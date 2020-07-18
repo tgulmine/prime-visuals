@@ -38,7 +38,8 @@ const PyramidDot: React.FC<PyramidDotProps> = props => {
   function getBgColor() {
     let alphaColor;
     if (showTransparency) {
-      if (showInverseColors) alphaColor = activeColor.replace('1)', (1 - primesPerDensity).toString());
+      if (showInverseColors)
+        alphaColor = activeColor.replace('1)', (1 - primesPerDensity).toString());
       else alphaColor = activeColor.replace('1)', primesPerDensity.toString());
     } else {
       if (showInverseColors) alphaColor = primeCount > 0 ? '#000000' : activeColor;

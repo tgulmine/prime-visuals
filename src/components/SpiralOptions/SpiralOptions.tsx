@@ -4,7 +4,13 @@ import ColorBox from '../ColorBox/ColorBox';
 import ToggleDot from '../ToggleDot/ToggleDot';
 import { colorList } from '../../utils/colorList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faPlus, faMinus, faCalculator } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronLeft,
+  faChevronRight,
+  faPlus,
+  faMinus,
+  faCalculator
+} from '@fortawesome/free-solid-svg-icons';
 
 interface SpiralOptionsProps {
   setShowNumbers: Dispatch<SetStateAction<boolean>>;
@@ -113,14 +119,20 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
     >
       <button
         className={
-          isHidden ? 'SpiralOptions-buttonOn h-screen w-10 focus:outline-none' : 'SpiralOptions-buttonOff w-10 h-screen focus:outline-none'
+          isHidden
+            ? 'SpiralOptions-buttonOn h-screen w-10 focus:outline-none'
+            : 'SpiralOptions-buttonOff w-10 h-screen focus:outline-none'
         }
         style={{
           width: buttonWidth
         }}
         onClick={() => setIsHidden(!isHidden)}
       >
-        {isHidden ? <FontAwesomeIcon icon={faChevronLeft} /> : <FontAwesomeIcon icon={faChevronRight} />}
+        {isHidden ? (
+          <FontAwesomeIcon icon={faChevronLeft} />
+        ) : (
+          <FontAwesomeIcon icon={faChevronRight} />
+        )}
       </button>
       <div
         className={
@@ -134,21 +146,35 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
       >
         <div className="flex">
           <div className="mr-4 font-medium">Show numbers</div>
-          <ToggleDot toggleShow={toggleShowNumbers} activeColor={activeColor} onClickFunction={updateShowNumbers} />
+          <ToggleDot
+            toggleShow={toggleShowNumbers}
+            activeColor={activeColor}
+            onClickFunction={updateShowNumbers}
+          />
         </div>
         <div className="flex mt-2">
           <div className="mr-4 font-medium">Highlight squares</div>
-          <ToggleDot toggleShow={toggleShowSquares} activeColor={activeColor} onClickFunction={updateShowSquares} />
+          <ToggleDot
+            toggleShow={toggleShowSquares}
+            activeColor={activeColor}
+            onClickFunction={updateShowSquares}
+          />
         </div>
         <div className="flex mt-2">
           <div className="mr-4 font-medium">Highlight evens</div>
-          <ToggleDot toggleShow={toggleShowEvens} activeColor={activeColor} onClickFunction={updateShowEvens} />
+          <ToggleDot
+            toggleShow={toggleShowEvens}
+            activeColor={activeColor}
+            onClickFunction={updateShowEvens}
+          />
         </div>
         <div className="flex-row w-1/2">
           <div className="mt-2 mb-2 ml-auto mr-auto font-medium">Change color</div>
           <div className="flex flex-wrap">
             {colorList &&
-              colorList.map((color, index) => <ColorBox color={color} activeColor={activeColor} setActiveColor={setActiveColor} />)}
+              colorList.map((color, index) => (
+                <ColorBox color={color} activeColor={activeColor} setActiveColor={setActiveColor} />
+              ))}
           </div>
         </div>
         <div className="flex-row mt-2 items-center">

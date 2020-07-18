@@ -12,10 +12,14 @@ const Routes = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={() => <Home activeColor={activeColor} secondaryColor={secondaryColor} />} />
         <Route
           exact
-          path="/spiral"
+          path="/"
+          component={() => <Home activeColor={activeColor} secondaryColor={secondaryColor} />}
+        />
+        <Route
+          exact
+          path="/ulamspiral"
           component={() => (
             <Spiral
               activeColor={activeColor}
@@ -27,7 +31,7 @@ const Routes = () => {
         />
         <Route
           exact
-          path="/pyramid"
+          path="/parallaxcompression"
           component={() => (
             <Pyramid
               activeColor={activeColor}

@@ -12,10 +12,10 @@ const Header: React.FC<HeaderProps> = props => {
   const { secondaryColor } = props;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-1/5 bg-black z-10">
       <Link to="/">
         <div
-          className="px-4 py-2 ml-8 mt-6 border-red-700 border-8 w-auto font-light text-4xl text-red-700"
+          className="px-4 py-2 ml-8 mt-6 border-red-700 border-8 font-light text-4xl text-red-700 text-center"
           style={{
             borderColor: activeColor,
             color: activeColor
@@ -24,27 +24,27 @@ const Header: React.FC<HeaderProps> = props => {
           Prime Visuals
         </div>
       </Link>
-      <div className="flex flex-col w-2/3 mt-10">
-        <Link to="/spiral">
+      <div className="flex mt-10 flex-wrap">
+        <Link to="/ulamspiral">
           <div
-            className="px-4 py-2 mt-6 border-red-700 border-4 border-l-0 w-auto font-light text-2xl text-red-700"
+            className="px-4 py-2 mt-6 border-red-700 border-4 border-l-0 font-light text-2xl text-red-700 text-center"
             style={{
               borderColor: secondaryColor,
               color: secondaryColor
             }}
           >
-            Prime Spiral
+            Ulam Spiral
           </div>
         </Link>
-        <Link to="/pyramid">
+        <Link to="/parallaxcompression">
           <div
-            className="px-4 py-2 mt-6 border-red-700 border-4 border-l-0 w-auto font-light text-2xl text-red-700"
+            className="px-4 py-2 mt-6 border-red-700 border-4 border-l-0 font-light text-2xl text-red-700 text-center"
             style={{
               borderColor: secondaryColor,
               color: secondaryColor
             }}
           >
-            Prime Pyramid
+            Parallax Compression
           </div>
         </Link>
       </div>
