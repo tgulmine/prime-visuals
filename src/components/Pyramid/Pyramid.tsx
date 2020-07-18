@@ -1,6 +1,6 @@
 import React, { useState, useEffect, SetStateAction, Dispatch } from 'react';
-import PyramidDot from '../PyramidDot/PyramidDot';
-import PyramidOptions from '../PyramidOptions/PyramidOptions';
+import { PyramidDot } from '../PyramidDot';
+import { PyramidOptions } from '../PyramidOptions';
 import primeList from '../../prime-list-big.json';
 
 interface PyramidProps {

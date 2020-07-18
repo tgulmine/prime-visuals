@@ -1,7 +1,7 @@
 import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
 import './PyramidOptions.scss';
-import ColorBox from '../ColorBox/ColorBox';
-import ToggleDot from '../ToggleDot/ToggleDot';
+import { ColorBox } from '../ColorBox';
+import { ToggleDot } from '../ToggleDot';
 import { colorList } from '../../utils/colorList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faPlus, faMinus, faCalculator } from '@fortawesome/free-solid-svg-icons';
@@ -159,7 +159,9 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
           <div className="mt-2 mb-2 ml-auto mr-auto font-medium">Change color</div>
           <div className="flex flex-wrap">
             {colorList &&
-              colorList.map((color, index) => <ColorBox color={color} activeColor={activeColor} setActiveColor={setActiveColor} />)}
+              colorList.map((color, index) => (
+                <ColorBox color={color} activeColor={activeColor} setActiveColor={setActiveColor} />
+              ))}
           </div>
         </div>
         <div className="flex-row mt-2 items-center">

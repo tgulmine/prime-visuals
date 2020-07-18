@@ -22,7 +22,9 @@ const ToggleDot: React.FC<ToggleDotProps> = props => {
       />
       <div
         className={
-          toggleShow ? 'ToggleDot-On bg-blue-300 w-6 h-6 rounded-full absolute' : 'ToggleDot-Off bg-blue-300 w-6 h-6 rounded-full absolute'
+          toggleShow
+            ? 'ToggleDot-On bg-blue-300 w-6 h-6 rounded-full absolute'
+            : 'ToggleDot-Off bg-blue-300 w-6 h-6 rounded-full absolute'
         }
         style={{
           backgroundColor: activeColor

@@ -1,6 +1,6 @@
 import React, { useState, SetStateAction, Dispatch } from 'react';
-import SpiralDot from '../SpiralDot/SpiralDot';
-import SpiralOptions from '../SpiralOptions/SpiralOptions';
+import { SpiralDot } from '../SpiralDot';
+import { SpiralOptions } from '../SpiralOptions';
 import primeList from '../../prime-list-big.json';
 
 interface SpiralProps {
