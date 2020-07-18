@@ -12,11 +12,7 @@ const Routes = () => {
   return (
     <Router>
       <Switch>
-        <Route
-          exact
-          path="/"
-          component={() => <Home activeColor={activeColor} secondaryColor={secondaryColor} />}
-        />
+        <Route exact path="/" component={() => <Home activeColor={activeColor} secondaryColor={secondaryColor} />} />
         <Route
           exact
           path="/ulamspiral"
