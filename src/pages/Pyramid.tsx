@@ -20,7 +20,7 @@ const PyramidPage: React.FC<PyramidPageProps> = props => {
   const [density, setDensity] = useState(30);
 
   return (
-    <div className="flex bg-black h-screen justify-between relative">
+    <div className="flex flex-col md:flex-row bg-black h-screen justify-between relative">
       <Header activeColor={activeColor} secondaryColor={secondaryColor} />
       <Pyramid
         rows={rows}

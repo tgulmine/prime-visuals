@@ -10,28 +10,28 @@ const HomeContent: React.FC<HomeContentProps> = props => {
   const { activeColor } = props;
 
   return (
-    <div className="w-4/5 flex flex-col pt-48 pl-32">
-      <div className="flex flex-col w-3/5">
+    <div className="md:w-4/5 w-full p-6 md:pb-0 md:pr-0 flex flex-col lg:pt-48 lg:pl-32 md:pt-16 md:pl-20">
+      <div className="flex flex-col lg:w-3/5 md:w-4/5">
         <div
-          className="text-lg font-semibold"
+          className="md:text-lg text-base font-semibold"
           style={{
             color: activeColor
           }}
         >
           &nbsp;About
         </div>
-        <div className="text-justify mt-1">
+        <div className="text-justify mt-1 text-sm">
           &nbsp;Prime numbers are integers that can only be divided by 1 and itself, going from 2, 3, 5 to infinity and
           beyond. To this day we have not managed to find a proper formula able to find any prime in existence, but when
           you look at the numbers from a new point of view, patterns start to emerge. This website was made with the
           purpose of finding different ways of visualizing and understanding prime numbers.
         </div>
       </div>
-      <div className="flex w-4/5 mt-20 items-start">
-        <div className="w-1/2 flex flex-wrap mr-10">
+      <div className="flex lg:flex-row flex-col md:w-4/5 w-full lg:mt-20 md:mt-10 mt-6 items-start md:mb-6">
+        <div className="lg:w-1/2 md:w-full flex flex-wrap lg:mr-10">
           <Link to="/ulamspiral">
             <div
-              className="text-lg font-semibold"
+              className="md:text-lg text-base font-semibold"
               style={{
                 color: activeColor
               }}
@@ -39,7 +39,7 @@ const HomeContent: React.FC<HomeContentProps> = props => {
               &nbsp;Ulam Spiral
             </div>
           </Link>
-          <div className="text-justify mt-1">
+          <div className="text-justify mt-1 text-sm">
             &nbsp;It was created by Stanislaw Ulam in 1963, it’s constructed by writing the positive integers on a
             square grid in a spiral arrangement, then marking the primes. For performance reasons the maximum number of
             primes are limited for this and for the Parallax Compression.
@@ -48,15 +48,15 @@ const HomeContent: React.FC<HomeContentProps> = props => {
             href="https://en.wikipedia.org/wiki/Ulam_spiral"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline pl-1"
+            className="underline pl-1 text-sm"
           >
             More info
           </a>
         </div>
-        <div className="w-1/2 flex flex-wrap ">
+        <div className="lg:w-1/2 md:w-full flex flex-wrap lg:mt-0 md:mt-10 mt-6">
           <Link to="/parallaxcompression">
             <div
-              className="text-lg font-semibold"
+              className="md:text-lg text-base font-semibold"
               style={{
                 color: activeColor
               }}
@@ -64,7 +64,7 @@ const HomeContent: React.FC<HomeContentProps> = props => {
               &nbsp;Parallax Compression
             </div>
           </Link>
-          <div className="text-justify mt-1">
+          <div className="text-justify mt-1 text-sm">
             &nbsp;It’s an algorithm invented by Shaun Gilchrist in 2018, inspired by the Ulam Spiral. It’s constructed
             by setting a density value and a number of rows. Each row will have one dot more than the previous one, and
             each dot will have the density amount of numbers interspersed based on the row number, then the dots with
@@ -74,7 +74,7 @@ const HomeContent: React.FC<HomeContentProps> = props => {
             href="http://www.novaspivack.com/science/we-have-discovered-a-new-pattern-in-the-prime-numbers-parallax-compression"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline pl-1"
+            className="underline pl-1 text-sm"
           >
             More info
           </a>

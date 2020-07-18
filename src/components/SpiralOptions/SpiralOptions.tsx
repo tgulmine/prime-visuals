@@ -33,7 +33,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
   const { setActiveColor } = props;
   const { setSecondaryColor } = props;
 
-  const [toggleShowNumbers, setToggleShowNumbers] = useState(true);
+  const [toggleShowNumbers, setToggleShowNumbers] = useState(false);
   const [toggleShowSquares, setToggleShowSquares] = useState(false);
   const [toggleShowEvens, setToggleShowEvens] = useState(false);
   const [editDotSize, setEditDotSize] = useState(startDotSize);

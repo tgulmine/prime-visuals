@@ -19,7 +19,7 @@ const SpiralPage: React.FC<SpiralPageProps> = props => {
   const [maxNumber, setMaxNumber] = useState(1000);
 
   return (
-    <div className="flex bg-black h-screen justify-between relative">
+    <div className="flex flex-col md:flex-row bg-black h-screen justify-between relative">
       <Header activeColor={activeColor} secondaryColor={secondaryColor} />
       <Spiral
         min={1}

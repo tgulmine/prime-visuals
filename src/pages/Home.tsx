@@ -13,7 +13,7 @@ const HomePage: React.FC<HomePageProps> = props => {
   const { secondaryColor } = props;
 
   return (
-    <div className="flex bg-black h-screen relative text-gray-200">
+    <div className="flex flex-col md:flex-row bg-black h-screen relative text-gray-200">
       <Header activeColor={activeColor} secondaryColor={secondaryColor} />
       <HomeContent activeColor={activeColor} />
     </div>
