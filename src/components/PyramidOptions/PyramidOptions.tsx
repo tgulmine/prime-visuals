@@ -101,7 +101,7 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
 
   return (
     <div
-      className="flex justify-center items-center text-gray-200 overflow-hidden z-10 md:h-screen h-80vh"
+      className="flex justify-center items-center text-gray-200 overflow-hidden z-10 md:h-screen h-75vh"
       style={{
         width: optionsWidth
       }}
