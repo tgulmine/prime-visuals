@@ -101,7 +101,7 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
 
   return (
     <div
-      className="flex justify-center items-center text-gray-200 overflow-hidden z-10 md:h-screen h-options"
+      className="flex justify-center items-center text-gray-200 overflow-hidden z-10 md:h-screen h-80vh"
       style={{
         width: optionsWidth
       }}
@@ -109,8 +109,8 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
       <button
         className={
           isHidden
-            ? 'PyramidOptions-buttonOn w-10 focus:outline-none'
-            : 'PyramidOptions-buttonOff w-10 focus:outline-none'
+            ? 'PyramidOptions-buttonOn w-10 focus:outline-none h-full'
+            : 'PyramidOptions-buttonOff w-10 focus:outline-none h-full'
         }
         style={{
           width: buttonWidth
@@ -122,8 +122,8 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
       <div
         className={
           isHidden
-            ? 'PyramidOptions-hide bg-black flex-row justify-center items-center pl-4 overflow-hidden'
-            : 'PyramidOptions-show bg-black flex-row justify-center items-center pl-4 overflow-hidden'
+            ? 'PyramidOptions-hide bg-black flex flex-col justify-center pl-8 py-8 overflow-hidden h-full'
+            : 'PyramidOptions-show bg-black flex flex-col justify-center pl-8 py-8 overflow-hidden h-full'
         }
         style={{
           width: optionsWidth - buttonWidth
