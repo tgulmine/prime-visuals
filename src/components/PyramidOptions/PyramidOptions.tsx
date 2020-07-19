@@ -1,10 +1,11 @@
-import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import './PyramidOptions.scss';
 import { ColorBox } from '../ColorBox';
 import { ToggleDot } from '../ToggleDot';
 import { colorList } from '../../utils/colorList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faPlus, faMinus, faCalculator } from '@fortawesome/free-solid-svg-icons';
+import { useTheme } from '../../context/theme';
 
 interface PyramidOptionsProps {
   setShowNumbers: Dispatch<SetStateAction<boolean>>;
@@ -14,9 +15,6 @@ interface PyramidOptionsProps {
   setRows: Dispatch<SetStateAction<number>>;
   setDensity: Dispatch<SetStateAction<number>>;
   startDotSize: number;
-  activeColor: string;
-  setActiveColor: Dispatch<SetStateAction<string>>;
-  setSecondaryColor: Dispatch<SetStateAction<string>>;
 }
 
 const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
@@ -27,9 +25,8 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
   const { setRows } = props;
   const { setDensity } = props;
   const { startDotSize } = props;
-  const { activeColor } = props;
-  const { setActiveColor } = props;
-  const { setSecondaryColor } = props;
+
+  const { theme, setTheme } = useTheme()!;
 
   const [toggleShowNumbers, setToggleShowNumbers] = useState(false);
   const [toggleInverseColors, setToggleInverseColors] = useState(false);
@@ -43,27 +40,18 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
   const optionsWidth = 300;
   const buttonWidth = 50;
 
-  useEffect(() => {
-    setSecondaryColor(updateColor('even'));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeColor]);
-
-  function updateColor(color: string) {
+  function setColors(mainColor: string) {
     let k = 0;
     for (let i = 0; i < colorList.length; i++) {
-      if (activeColor === colorList[i]) {
+      if (mainColor === colorList[i]) {
         k = i;
         break;
       }
     }
-    if (color === 'square') {
-      k += 4;
-      if (k >= colorList.length) k -= colorList.length;
-    } else {
-      k -= 4;
-      if (k < 0) k += colorList.length;
-    }
-    return colorList[k];
+    k -= 4;
+    if (k < 0) k += colorList.length;
+    let secondaryColor = colorList[k];
+    setTheme({ mainColor: mainColor, secondaryColor: secondaryColor });
   }
 
   function updateShowNumbers() {
@@ -99,7 +87,6 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
       setNewRows(newRows);
       setRows(newRows);
     }
-    console.log('rows', newRows);
   }
 
   function updateDensity() {
@@ -110,7 +97,6 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
       setNewDensity(newDensity);
       setDensity(newDensity);
     }
-    console.log('density', newDensity);
   }
 
   return (
@@ -145,23 +131,21 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
       >
         <div className="flex">
           <div className="mr-4 font-medium">Show prime count</div>
-          <ToggleDot toggleShow={toggleShowNumbers} activeColor={activeColor} onClickFunction={updateShowNumbers} />
+          <ToggleDot toggleShow={toggleShowNumbers} onClickFunction={updateShowNumbers} />
         </div>
         <div className="flex mt-2">
           <div className="mr-4 font-medium">Inverse colors</div>
-          <ToggleDot toggleShow={toggleInverseColors} activeColor={activeColor} onClickFunction={updateInverseColors} />
+          <ToggleDot toggleShow={toggleInverseColors} onClickFunction={updateInverseColors} />
         </div>
         <div className="flex mt-2">
           <div className="mr-4 font-medium">Transparency</div>
-          <ToggleDot toggleShow={toggleTransparency} activeColor={activeColor} onClickFunction={updateTransparency} />
+          <ToggleDot toggleShow={toggleTransparency} onClickFunction={updateTransparency} />
         </div>
         <div className="flex-row w-1/2">
           <div className="mt-2 mb-2 ml-auto mr-auto font-medium">Change color</div>
           <div className="flex flex-wrap">
             {colorList &&
-              colorList.map((color, index) => (
-                <ColorBox key={index} color={color} activeColor={activeColor} setActiveColor={setActiveColor} />
-              ))}
+              colorList.map((color, index) => <ColorBox key={index} color={color} setMainColor={setColors} />)}
           </div>
         </div>
         <div className="flex-row mt-2 items-center">
@@ -170,7 +154,7 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
             <button
               className="mr-4 w-6 h-6 rounded focus:outline-none"
               style={{
-                color: activeColor
+                color: theme.mainColor
               }}
               onClick={() => updateDotSize(1)}
             >
@@ -179,7 +163,7 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
             <button
               className="w-6 h-6 rounded focus:outline-none"
               style={{
-                color: activeColor
+                color: theme.mainColor
               }}
               onClick={() => updateDotSize(2)}
             >
@@ -203,7 +187,7 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
             <button
               className="ml-2 py-1 px-2 rounded focus:outline-none"
               style={{
-                color: activeColor
+                color: theme.mainColor
               }}
               onClick={() => updateRows()}
             >
@@ -227,7 +211,7 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
             <button
               className="ml-2 py-1 px-2 rounded focus:outline-none"
               style={{
-                color: activeColor
+                color: theme.mainColor
               }}
               onClick={() => updateDensity()}
             >

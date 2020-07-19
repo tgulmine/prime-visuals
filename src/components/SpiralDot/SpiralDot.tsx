@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './SpiralDot.scss';
+import { useTheme } from '../../context/theme';
 
 interface SpiralDotProps {
   number: number;
@@ -8,11 +9,7 @@ interface SpiralDotProps {
   isPrime: Boolean;
   showNumbers: Boolean;
   showSquares: Boolean;
-  showEvens: Boolean;
   dotSize: number;
-  activeColor: string;
-  squareColor: string;
-  evenColor: string;
 }
 
 const SpiralDot: React.FC<SpiralDotProps> = props => {
@@ -22,11 +19,9 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
   const { isPrime } = props;
   const { showNumbers } = props;
   const { showSquares } = props;
-  const { showEvens } = props;
   const { dotSize } = props;
-  const { activeColor } = props;
-  const { squareColor } = props;
-  const { evenColor } = props;
+
+  const { theme } = useTheme()!;
 
   //7 sizes 0-6
   const boxSize = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22];
@@ -34,10 +29,6 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
 
   function isSquare(n: number) {
     return n > 0 && Math.sqrt(n) % 1 === 0;
-  }
-
-  function isEven(n: number) {
-    return n > 0 && n % 2 === 0;
   }
 
   return (
@@ -48,13 +39,7 @@ const SpiralDot: React.FC<SpiralDotProps> = props => {
         width: boxSize[dotSize],
         top: window.screen.availHeight / 2 - boxSize[dotSize] / 2 - boxSize[dotSize] * yPos,
         left: window.screen.availWidth / 2 - boxSize[dotSize] / 2 + boxSize[dotSize] * xPos,
-        backgroundColor: isPrime
-          ? activeColor
-          : showSquares && isSquare(number)
-          ? squareColor
-          : showEvens && isEven(number)
-          ? evenColor
-          : '',
+        backgroundColor: isPrime ? theme.mainColor : showSquares && isSquare(number) ? theme.secondaryColor : '',
         fontSize: fontSize[dotSize]
       }}
       title={number.toString()}

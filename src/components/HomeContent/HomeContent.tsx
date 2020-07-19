@@ -1,15 +1,15 @@
 import * as React from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BrowserRouter as Route, Link } from 'react-router-dom';
+import { useTheme } from '../../context/theme';
 
-interface HomeContentProps {
+/* interface HomeContentProps {
   activeColor: string;
   secondaryColor: string;
-}
+} */
 
-const HomeContent: React.FC<HomeContentProps> = props => {
-  const { activeColor } = props;
-  const { secondaryColor } = props;
+const HomeContent: React.FC = () => {
+  const { theme } = useTheme()!;
 
   return (
     <div className="md:w-4/5 w-full p-6 md:pb-0 md:pr-0 flex flex-col lg:pt-48 lg:pl-32 md:pt-16 md:pl-20">
@@ -17,7 +17,7 @@ const HomeContent: React.FC<HomeContentProps> = props => {
         <div
           className="md:text-lg text-base font-semibold"
           style={{
-            color: activeColor
+            color: theme.mainColor
           }}
         >
           &nbsp;About
@@ -35,7 +35,7 @@ const HomeContent: React.FC<HomeContentProps> = props => {
             <div
               className="md:text-lg text-base font-semibold"
               style={{
-                color: activeColor
+                color: theme.mainColor
               }}
             >
               &nbsp;Ulam Spiral
@@ -52,7 +52,7 @@ const HomeContent: React.FC<HomeContentProps> = props => {
             rel="noopener noreferrer"
             className="underline pl-1 text-sm"
             style={{
-              color: secondaryColor
+              color: theme.secondaryColor
             }}
           >
             More info
@@ -63,7 +63,7 @@ const HomeContent: React.FC<HomeContentProps> = props => {
             <div
               className="md:text-lg text-base font-semibold"
               style={{
-                color: activeColor
+                color: theme.mainColor
               }}
             >
               &nbsp;Parallax Compression
@@ -81,7 +81,7 @@ const HomeContent: React.FC<HomeContentProps> = props => {
             rel="noopener noreferrer"
             className="underline pl-1 text-sm"
             style={{
-              color: secondaryColor
+              color: theme.secondaryColor
             }}
           >
             More info

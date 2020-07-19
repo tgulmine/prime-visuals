@@ -7,9 +7,6 @@ interface SpiralProps {
   min: number;
   max: number;
   startDotSize: number;
-  activeColor: string;
-  setActiveColor: Dispatch<SetStateAction<string>>;
-  setSecondaryColor: Dispatch<SetStateAction<string>>;
   setMaxNumber: Dispatch<SetStateAction<number>>;
 }
 
@@ -17,18 +14,11 @@ const Spiral: React.FC<SpiralProps> = props => {
   const { min } = props;
   const { max } = props;
   const { startDotSize } = props;
-  const { activeColor } = props;
   const { setMaxNumber } = props;
-  const { setActiveColor } = props;
-  const { setSecondaryColor } = props;
 
   const [showNumbers, setShowNumbers] = useState(false);
   const [showSquares, setShowSquares] = useState(false);
-  const [showEvens, setShowEvens] = useState(false);
   const [dotSize, setDotSize] = useState(startDotSize);
-
-  const [squareColor, setSquareColor] = useState('');
-  const [evenColor, setEvenColor] = useState('');
 
   let posX = 0,
     posY = 0,
@@ -102,26 +92,16 @@ const Spiral: React.FC<SpiralProps> = props => {
             isPrime={isPrimeList[index]}
             showNumbers={showNumbers}
             showSquares={showSquares}
-            showEvens={showEvens}
             dotSize={dotSize}
-            activeColor={activeColor}
-            squareColor={squareColor}
-            evenColor={evenColor}
           />
         ))}
       <div className="flex justify-end">
         <SpiralOptions
           setShowNumbers={setShowNumbers}
           setShowSquares={setShowSquares}
-          setShowEvens={setShowEvens}
           setDotSize={setDotSize}
           setMaxNumber={setMaxNumber}
           startDotSize={startDotSize}
-          activeColor={activeColor}
-          setSquareColor={setSquareColor}
-          setEvenColor={setEvenColor}
-          setActiveColor={setActiveColor}
-          setSecondaryColor={setSecondaryColor}
         />
       </div>
     </div>

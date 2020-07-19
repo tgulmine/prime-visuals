@@ -1,42 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from '../pages/Home';
 import Spiral from '../pages/Spiral';
 import Pyramid from '../pages/Pyramid';
-import { colorList } from '../utils/colorList';
+import { ThemeProvider } from '../context/theme';
 
 const Routes = () => {
-  const [activeColor, setActiveColor] = useState(colorList[2]);
-  const [secondaryColor, setSecondaryColor] = useState(colorList[10]);
-
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={() => <Home activeColor={activeColor} secondaryColor={secondaryColor} />} />
-        <Route
-          exact
-          path="/ulamspiral"
-          component={() => (
-            <Spiral
-              activeColor={activeColor}
-              setActiveColor={setActiveColor}
-              secondaryColor={secondaryColor}
-              setSecondaryColor={setSecondaryColor}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/parallaxcompression"
-          component={() => (
-            <Pyramid
-              activeColor={activeColor}
-              setActiveColor={setActiveColor}
-              secondaryColor={secondaryColor}
-              setSecondaryColor={setSecondaryColor}
-            />
-          )}
-        />
+        <ThemeProvider>
+          <Route exact path="/" component={() => <Home />} />
+          <Route exact path="/ulamspiral" component={() => <Spiral />} />
+          <Route exact path="/parallaxcompression" component={() => <Pyramid />} />
+        </ThemeProvider>
       </Switch>
     </Router>
   );

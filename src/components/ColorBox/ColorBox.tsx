@@ -1,23 +1,24 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
+import { useTheme } from '../../context/theme';
 
 interface ColorBoxProps {
   color: string;
-  activeColor: string;
-  setActiveColor: Dispatch<SetStateAction<string>>;
+  setMainColor: (mainColor: string) => void;
 }
 
 const ColorBox: React.FC<ColorBoxProps> = props => {
   var color = props.color;
-  var activeColor = props.activeColor;
+
+  const { theme } = useTheme()!;
 
   return (
     <button
       className="rounded p-2 mr-2 mb-2 border-2 focus:outline-none focus:shadow-blackOutline"
       style={{
         borderColor: color,
-        backgroundColor: color === activeColor ? color : undefined
+        backgroundColor: color === theme.mainColor ? color : undefined
       }}
-      onClick={() => props.setActiveColor(color)}
+      onClick={() => props.setMainColor(color)}
     />
   );
 };

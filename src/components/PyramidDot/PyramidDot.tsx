@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './PyramidDot.scss';
+import { useTheme } from '../../context/theme';
 
 interface PyramidDotProps {
   primeCount: number;
@@ -11,7 +12,6 @@ interface PyramidDotProps {
   showInverseColors: Boolean;
   showTransparency: Boolean;
   dotSize: number;
-  activeColor: string;
 }
 
 const PyramidDot: React.FC<PyramidDotProps> = props => {
@@ -24,7 +24,8 @@ const PyramidDot: React.FC<PyramidDotProps> = props => {
   const { showInverseColors } = props;
   const { showTransparency } = props;
   const { dotSize } = props;
-  const { activeColor } = props;
+
+  const { theme } = useTheme()!;
 
   const primesPerDensity = primeCount / density;
 
@@ -38,11 +39,11 @@ const PyramidDot: React.FC<PyramidDotProps> = props => {
   function getBgColor() {
     let alphaColor;
     if (showTransparency) {
-      if (showInverseColors) alphaColor = activeColor.replace('1)', (1 - primesPerDensity).toString());
-      else alphaColor = activeColor.replace('1)', primesPerDensity.toString());
+      if (showInverseColors) alphaColor = theme.mainColor.replace('1)', (1 - primesPerDensity).toString());
+      else alphaColor = theme.mainColor.replace('1)', primesPerDensity.toString());
     } else {
-      if (showInverseColors) alphaColor = primeCount > 0 ? '#000000' : activeColor;
-      else alphaColor = primeCount > 0 ? activeColor : '#000000';
+      if (showInverseColors) alphaColor = primeCount > 0 ? '#000000' : theme.mainColor;
+      else alphaColor = primeCount > 0 ? theme.mainColor : '#000000';
     }
     return alphaColor;
   }

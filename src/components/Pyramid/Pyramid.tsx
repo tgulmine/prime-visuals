@@ -7,9 +7,6 @@ interface PyramidProps {
   rows: number;
   density: number;
   startDotSize: number;
-  activeColor: string;
-  setActiveColor: Dispatch<SetStateAction<string>>;
-  setSecondaryColor: Dispatch<SetStateAction<string>>;
   setRows: Dispatch<SetStateAction<number>>;
   setDensity: Dispatch<SetStateAction<number>>;
 }
@@ -22,9 +19,6 @@ const Pyramid: React.FC<PyramidProps> = props => {
   const { rows } = props;
   const { density } = props;
   const { startDotSize } = props;
-  const { activeColor } = props;
-  const { setActiveColor } = props;
-  const { setSecondaryColor } = props;
   const { setRows } = props;
   const { setDensity } = props;
 
@@ -96,7 +90,6 @@ const Pyramid: React.FC<PyramidProps> = props => {
               showInverseColors={showInverseColors}
               showTransparency={showTransparency}
               dotSize={dotSize}
-              activeColor={activeColor}
             />
           ))
         )}
@@ -109,9 +102,6 @@ const Pyramid: React.FC<PyramidProps> = props => {
           setRows={setRows}
           setDensity={setDensity}
           startDotSize={startDotSize}
-          activeColor={activeColor}
-          setActiveColor={setActiveColor}
-          setSecondaryColor={setSecondaryColor}
         />
       </div>
     </div>
