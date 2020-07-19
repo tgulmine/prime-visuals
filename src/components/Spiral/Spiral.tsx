@@ -95,6 +95,7 @@ const Spiral: React.FC<SpiralProps> = props => {
       {numberList &&
         numberList.map((n, index) => (
           <SpiralDot
+            key={index}
             number={numberList[index]}
             xPos={posXList[index]}
             yPos={posYList[index]}

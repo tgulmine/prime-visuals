@@ -160,7 +160,7 @@ const PyramidOptions: React.FC<PyramidOptionsProps> = props => {
           <div className="flex flex-wrap">
             {colorList &&
               colorList.map((color, index) => (
-                <ColorBox color={color} activeColor={activeColor} setActiveColor={setActiveColor} />
+                <ColorBox key={index} color={color} activeColor={activeColor} setActiveColor={setActiveColor} />
               ))}
           </div>
         </div>

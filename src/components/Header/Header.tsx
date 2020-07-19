@@ -12,12 +12,7 @@ const Header: React.FC<HeaderProps> = props => {
   const { secondaryColor } = props;
 
   return (
-    <div
-      className="flex md:flex-col md:w-1/5 flex-row w-full bg-black z-10 items-center md:items-start mb-4 md:mb-0"
-      style={{
-        height: '80px'
-      }}
-    >
+    <div className="flex md:flex-col md:w-1/5 flex-row w-full bg-black z-30 items-center md:items-start mb-4 md:mb-0 md:h-screen h-20">
       <Link to="/">
         <div
           className="md:px-4 md:py-2 md:ml-8 md:mt-6 border-red-700 md:border-8 font-light lg:text-4xl text-red-700 text-center

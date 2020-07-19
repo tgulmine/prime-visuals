@@ -35,8 +35,6 @@ const Pyramid: React.FC<PyramidProps> = props => {
 
   const [fullPyramid, setFullPyramid] = useState<PyramidRow[]>([]);
 
-  console.log('rows', rows, 'density', density);
-
   let row = 0,
     cell = 0,
     counter = 0,
@@ -88,6 +86,7 @@ const Pyramid: React.FC<PyramidProps> = props => {
         fullPyramid.map((r, indexR) =>
           r.cell.map((c, indexC) => (
             <PyramidDot
+              key={indexC * 50000 + indexR}
               primeCount={fullPyramid[indexR].cell[indexC]}
               row={indexR}
               cell={indexC}

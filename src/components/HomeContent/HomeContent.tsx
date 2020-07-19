@@ -4,10 +4,12 @@ import { BrowserRouter as Route, Link } from 'react-router-dom';
 
 interface HomeContentProps {
   activeColor: string;
+  secondaryColor: string;
 }
 
 const HomeContent: React.FC<HomeContentProps> = props => {
   const { activeColor } = props;
+  const { secondaryColor } = props;
 
   return (
     <div className="md:w-4/5 w-full p-6 md:pb-0 md:pr-0 flex flex-col lg:pt-48 lg:pl-32 md:pt-16 md:pl-20">
@@ -49,6 +51,9 @@ const HomeContent: React.FC<HomeContentProps> = props => {
             target="_blank"
             rel="noopener noreferrer"
             className="underline pl-1 text-sm"
+            style={{
+              color: secondaryColor
+            }}
           >
             More info
           </a>
@@ -75,6 +80,9 @@ const HomeContent: React.FC<HomeContentProps> = props => {
             target="_blank"
             rel="noopener noreferrer"
             className="underline pl-1 text-sm"
+            style={{
+              color: secondaryColor
+            }}
           >
             More info
           </a>
