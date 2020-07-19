@@ -54,8 +54,8 @@ const PyramidDot: React.FC<PyramidDotProps> = props => {
       style={{
         height: boxSize[dotSize],
         width: boxSize[dotSize],
-        top: window.screen.availHeight / 2 - boxSize[dotSize] / 2 + boxSize[dotSize] * yPos,
-        left: window.screen.availWidth / 2 - boxSize[dotSize] / 2 + boxSize[dotSize] * xPos,
+        top: window.innerHeight / 2 - boxSize[dotSize] / 2 + boxSize[dotSize] * yPos,
+        left: window.innerWidth / 2 - boxSize[dotSize] / 2 + boxSize[dotSize] * xPos,
         backgroundColor: getBgColor(),
         fontSize: fontSize[dotSize]
       }}

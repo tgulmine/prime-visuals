@@ -11,7 +11,7 @@ const Header: React.FC = () => {
       <Link to="/">
         <div
           className="md:px-4 md:py-2 md:ml-8 md:mt-6 border-red-700 md:border-8 font-light lg:text-4xl text-red-700 text-center
-          md:text-2xl text-sm border-4 ml-4 mt-3 px-2 py-1"
+          md:text-2xl text-base border-4 ml-4 mt-3 px-2 py-1"
           style={{
             borderColor: theme.mainColor,
             color: theme.mainColor

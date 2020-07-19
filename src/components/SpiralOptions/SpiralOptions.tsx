@@ -80,7 +80,7 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
 
   return (
     <div
-      className="flex justify-center items-center text-gray-200 overflow-hidden z-10"
+      className="flex justify-center items-center text-gray-200 overflow-hidden z-10 md:h-screen h-options"
       style={{
         width: optionsWidth
       }}
@@ -88,8 +88,8 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
       <button
         className={
           isHidden
-            ? 'SpiralOptions-buttonOn h-screen w-10 focus:outline-none'
-            : 'SpiralOptions-buttonOff w-10 h-screen focus:outline-none'
+            ? 'SpiralOptions-buttonOn w-10 focus:outline-none'
+            : 'SpiralOptions-buttonOff w-10 focus:outline-none'
         }
         style={{
           width: buttonWidth
@@ -101,8 +101,8 @@ const SpiralOptions: React.FC<SpiralOptionsProps> = props => {
       <div
         className={
           isHidden
-            ? 'SpiralOptions-hide bg-black h-screen flex-row justify-center pl-4 pt-40 overflow-hidden'
-            : 'SpiralOptions-show bg-black h-screen flex-row justify-center pl-4 pt-40 overflow-hidden'
+            ? 'SpiralOptions-hide bg-black flex-row justify-center pl-4 py-8 overflow-hidden'
+            : 'SpiralOptions-show bg-black flex-row justify-center pl-4 py-8 overflow-hidden'
         }
         style={{
           width: optionsWidth - buttonWidth

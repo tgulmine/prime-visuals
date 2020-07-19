@@ -50,7 +50,7 @@ const HomeContent: React.FC = () => {
             href="https://en.wikipedia.org/wiki/Ulam_spiral"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline pl-1 text-sm"
+            className="underline pl-1 mt-1 text-sm"
             style={{
               color: theme.secondaryColor
             }}
@@ -79,7 +79,7 @@ const HomeContent: React.FC = () => {
             href="http://www.novaspivack.com/science/we-have-discovered-a-new-pattern-in-the-prime-numbers-parallax-compression"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline pl-1 text-sm"
+            className="underline pl-1 mt-1 text-sm"
             style={{
               color: theme.secondaryColor
             }}

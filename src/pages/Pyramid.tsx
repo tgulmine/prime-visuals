@@ -8,7 +8,7 @@ const PyramidPage: React.FC = () => {
   const [density, setDensity] = useState(30);
 
   return (
-    <div className="flex flex-col md:flex-row bg-black h-screen justify-between relative">
+    <div className="flex flex-col md:flex-row bg-black h-screen justify-between relative overflow-hidden">
       <Header />
       <Pyramid rows={rows} density={density} startDotSize={8} setRows={setRows} setDensity={setDensity} />
     </div>
