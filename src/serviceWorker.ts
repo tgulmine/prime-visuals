@@ -45,7 +45,10 @@ export function register(config?: Config) {
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(() => {
           // eslint-disable-next-line no-useless-concat
-          console.log('This web app is being served cache-first by a service ' + 'worker. To learn more, visit https://bit.ly/CRA-PWA');
+          console.log(
+            'This web app is being served cache-first by a service ' +
+              'worker. To learn more, visit https://bit.ly/CRA-PWA'
+          );
         });
       } else {
         // Is not localhost. Just register service worker
@@ -72,7 +75,8 @@ function registerValidSW(swUrl: string, config?: Config) {
               // content until all client tabs are closed.
               console.log(
                 // eslint-disable-next-line no-useless-concat
-                'New content is available and will be used when all ' + 'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
+                'New content is available and will be used when all ' +
+                  'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
               );
 
               // Execute callback
